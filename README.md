@@ -1,6 +1,6 @@
 # Demirware Fish Bot Metin2
 
-DEV 0.2 — geliştirme sürümü. Windows/Gameforge üzerinde canlı test ve EXE derlemesi henüz tamamlanmadı. Sekiz istemci desteği canlı ortamda doğrulanmış değildir; tespit edilemezlik veya ban güvenliği garantisi yoktur.
+DEV 0.3 — geliştirme sürümü. Windows/Gameforge üzerinde canlı test ve EXE derlemesi henüz tamamlanmadı. Sekiz istemci desteği canlı ortamda doğrulanmış değildir; tespit edilemezlik veya ban güvenliği garantisi yoktur.
 
 - [Kurulum ve kullanım](BASLANGIC.md)
 - [İlerleme ve yol haritası](ROADMAP.md)
@@ -8,6 +8,12 @@ DEV 0.2 — geliştirme sürümü. Windows/Gameforge üzerinde canlı test ve EX
 - [Test sonuçları ve sınırlar](docs/TEST_SONUCLARI.md)
 
 Temel kaynak: [hetzpvp/Mt2-Fishbot](https://github.com/hetzpvp/Mt2-Fishbot), başlangıç commit'i `981c4d3`; özgün yazar kredisi boristei. Yeniden adlandırma, üst projenin veya üçüncü tarafların haklarını değiştirmez. Dağıtım öncesinde kaynak lisansı netleştirilmelidir.
+
+## DEV 0.3 yenilikleri
+
+Sade Türkçe ana arayüz; Telegram bot oluşturma rehberi, bağlantı kontrolü, sohbet seçimi, test mesajı ve Windows kimlik deposunda token kaydı. Otomatik Telegram bildirimi/uzaktan kontrol bu sürümde yoktur. Güncellemeden sonra `Kur.cmd` dosyasını yeniden çalıştırın.
+
+![Telegram ayarları](docs/previews/telegram.png)
 
 ## Üst projenin özgün README'si
 

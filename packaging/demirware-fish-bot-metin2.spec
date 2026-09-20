@@ -6,7 +6,7 @@ a = Analysis(
     pathex=[os.path.join(root, 'src')],
     binaries=[], datas=[(os.path.join(root, 'assets'), 'assets')],
     hiddenimports=['pynput.keyboard', 'pynput.mouse', 'numba', 'llvmlite',
-                   'jigsaw_solver.deterministic', 'PySide6.QtSvg'],
+                   'jigsaw_solver.deterministic', 'PySide6.QtSvg', 'keyring.backends.Windows'],
     hookspath=[], hooksconfig={}, runtime_hooks=[], excludes=[], noarchive=False,
 )
 pyz = PYZ(a.pure)

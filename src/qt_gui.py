@@ -107,13 +107,15 @@ C = {
     "purple": "#b46cf2", "orange": "#ff9c5a",
 }
 
-MONO = "'Consolas', 'JetBrains Mono', 'Courier New', monospace"
+MONO = "'Segoe UI', sans-serif"
 SANS = "'Segoe UI', 'Inter', system-ui, sans-serif"
 
 
 def build_qss(accent: str = C["accent"]) -> str:
     """Returns the global stylesheet, parameterized by accent color."""
     return f"""
+    QGroupBox {{ border: 1px solid {C['line']}; border-radius: 8px; margin-top: 16px; padding: 16px; }}
+    QGroupBox::title {{ subcontrol-origin: margin; left: 12px; padding: 0 6px; }}
     /* ---------- Base ---------- */
     QWidget {{
         color: {C['text']};
@@ -152,7 +154,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-family: {MONO};
         font-size: 11px;
         color: {C['text_dim']};
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     QPushButton#TbBtn {{
         background: transparent;
@@ -173,14 +175,14 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-size: 18px;
         font-weight: 700;
         color: {accent};
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     #HeaderVersion {{
         font-family: {MONO};
         font-size: 14px;
         color: {C['text_mute']};
         font-weight: 400;
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     .HlPill {{
         background: {C['bg_2']};
@@ -192,7 +194,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         color: {C['text_mute']};
         font-family: {MONO};
         font-size: 9px;
-        letter-spacing: 2px;
+        letter-spacing: 0px;
     }}
     .HlValue {{
         color: {accent};
@@ -217,7 +219,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-weight: 600;
         color: {C['text_mute']};
         padding: 8px 16px;
-        letter-spacing: 1px;
+        letter-spacing: 0px;
         text-align: left;
     }}
     QPushButton.TabBtn:hover {{ color: {C['text_dim']}; }}
@@ -257,7 +259,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-family: {MONO};
         font-size: 11px;
         color: {C['text_dim']};
-        letter-spacing: 2px;
+        letter-spacing: 0px;
         font-weight: 600;
     }}
     .CardDot {{
@@ -274,7 +276,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         border: 1px solid {C['line_2']};
         padding: 6px 12px;
         border-radius: 6px;
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     QPushButton.Btn:hover {{ background: {C['bg_4']}; border: 1px solid #444; }}
     QPushButton.Btn:disabled {{ color: {C['text_mute']}; background: {C['bg_2']}; }}
@@ -287,7 +289,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-size: 11px;
         padding: 6px 12px;
         border-radius: 6px;
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     QPushButton.BtnGhost:hover {{ background: {C['bg_3']}; }}
 
@@ -300,7 +302,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         border-radius: 6px;
         font-family: {MONO};
         font-size: 11px;
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     QPushButton.BtnPrimary:hover {{ background: #ffc645; }}
     QPushButton.BtnPrimary:disabled {{ background: {C['bg_3']}; color: {C['text_mute']}; border: 1px solid {C['line_2']}; }}
@@ -314,7 +316,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         border-radius: 6px;
         font-family: {MONO};
         font-size: 11px;
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     QPushButton.BtnDanger:hover {{ background: #2c1517; border: 1px solid {C['red']}; }}
 
@@ -323,7 +325,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-weight: 700;
         padding: 10px 16px;
         border-radius: 8px;
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
 
     /* ---------- Inputs ---------- */
@@ -392,7 +394,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-weight: 600;
         color: {C['text_dim']};
         padding: 0 8px;
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     .PillActive {{
         background: rgba(74,222,128,0.08);
@@ -420,7 +422,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-family: {MONO};
         font-size: 11px;
         color: {C['text_mute']};
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     .KValue {{
         font-family: {MONO};
@@ -500,7 +502,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-family: {MONO};
         font-size: 11px;
         color: {C['text_mute']};
-        letter-spacing: 1px;
+        letter-spacing: 0px;
     }}
     .DonationsLabel {{ color: {C['text_dim']}; }}
     .DonationsAddr {{ color: {accent}; }}
@@ -513,7 +515,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-size: 13px;
         font-weight: 700;
         color: {accent};
-        letter-spacing: 2px;
+        letter-spacing: 0px;
     }}
     .ModalFooter {{ background: {C['bg_1']}; border-top: 1px solid {C['line']}; }}
 
@@ -540,7 +542,7 @@ def build_qss(accent: str = C["accent"]) -> str:
         font-family: {MONO};
         font-size: 10px;
         color: {accent};
-        letter-spacing: 2px;
+        letter-spacing: 0px;
         font-weight: 600;
     }}
     .DividerLine {{ background: {C['line']}; }}
@@ -588,7 +590,7 @@ def build_qss(accent: str = C["accent"]) -> str:
     QPushButton.SegBtn[active="open"]  {{ background: rgba(90,169,255,0.18); color: {C['blue']}; }}
 
     /* ---------- Wizard ---------- */
-    .WizStep {{ font-family: {MONO}; font-size: 10px; color: {C['text_mute']}; letter-spacing: 1px; }}
+    .WizStep {{ font-family: {MONO}; font-size: 10px; color: {C['text_mute']}; letter-spacing: 0px; }}
     .WizStep[state="active"] {{ color: {accent}; }}
     .WizStep[state="done"]   {{ color: {C['green']}; }}
     .WizNum {{
@@ -746,7 +748,7 @@ class Card(QFrame):
                 d.setProperty("class", "CardDot")
                 d.setFixedSize(6, 6)
                 hl.addWidget(d)
-            t = QLabel(title.upper())
+            t = QLabel(title)
             t.setProperty("class", "CardTitle")
             hl.addWidget(t)
             hl.addStretch(1)
@@ -819,7 +821,7 @@ class CoordPill(QFrame):
         self._label = QLabel(label + (" · Optional" if optional else ""))
         self._label.setProperty("class", "CoordPillLabel")
         layout.addWidget(self._label, 1)
-        self._coords_lbl = QLabel("not set")
+        self._coords_lbl = QLabel("seçilmedi")
         self._coords_lbl.setProperty("class", "CoordPillCoords")
         layout.addWidget(self._coords_lbl)
         self.setCoords(coords)
@@ -848,7 +850,7 @@ class CoordPill(QFrame):
             self.setProperty("set", "false")
             # Red for mandatory unset, muted for optional unset
             color = C["red"] if not self._optional else C["text_mute"]
-            self._coords_lbl.setText("not set")
+            self._coords_lbl.setText("seçilmedi")
             self._coords_lbl.setStyleSheet(f"color: {color};")
             self._set_icon("target", color)
         self.style().unpolish(self)
@@ -857,7 +859,7 @@ class CoordPill(QFrame):
     def setCapturing(self, capturing: bool) -> None:
         self.setProperty("capturing", "true" if capturing else "false")
         if capturing:
-            self._coords_lbl.setText("click in game…")
+            self._coords_lbl.setText("oyunda tıklayın…")
             self._coords_lbl.setStyleSheet(f"color: {C['orange']};")
             self._set_icon("target", C["orange"])
         self.style().unpolish(self)
@@ -1009,7 +1011,7 @@ class Header(QFrame):
     def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
         self.setObjectName("Header")
-        self.setFixedHeight(80)
+        self.setFixedHeight(60)
         layout = QHBoxLayout(self)
         layout.setContentsMargins(18, 8, 18, 8)
         layout.setSpacing(16)
@@ -1028,9 +1030,9 @@ class Header(QFrame):
         title_row.setContentsMargins(0, 0, 0, 0)
         title_row.setSpacing(6)
         title_row.setAlignment(Qt.AlignCenter)
-        title = QLabel("DEMIRWARE FISH BOT METIN2")
+        title = QLabel("Demirware Fish Bot Metin2")
         title.setObjectName("HeaderTitle")
-        ver = QLabel("DEV 0.2")
+        ver = QLabel("DEV 0.3")
         ver.setObjectName("HeaderVersion")
         title_row.addWidget(title)
         title_row.addWidget(ver)
@@ -1052,11 +1054,11 @@ class Header(QFrame):
         subrow.setSpacing(8)
         subrow.setAlignment(Qt.AlignCenter)
         self._discord_pill = self._make_hl("TEMEL", "boristei / Mt2", value_class="HlValue")
-        self._input_pill, self._input_value = self._make_hl_pair("INPUT", "—")
-        self._status_pill, self._status_value = self._make_hl_status("STATUS", "● IDLE")
+        self._input_pill, self._input_value = self._make_hl_pair("Giriş", "—")
+        self._status_pill, self._status_value = self._make_hl_status("Durum", "Hazır")
         subrow.addStretch(1)
-        subrow.addWidget(self._discord_pill)
-        subrow.addWidget(self._input_pill)
+        self._discord_pill.hide()
+        self._input_pill.hide()
         subrow.addWidget(self._status_pill)
         subrow.addStretch(1)
         tb.addLayout(subrow)
@@ -1165,7 +1167,7 @@ class TabsBar(QFrame):
         layout.setSpacing(2)
         self._buttons: Dict[str, QPushButton] = {}
         for tab_id, icon, label in items:
-            btn = QPushButton(f"  {label.upper()}")
+            btn = QPushButton(f"  {label}")
             btn.setIcon(make_icon(icon, 13, C["text_mute"]))
             btn.setIconSize(QSize(13, 13))
             btn.setProperty("class", "TabBtn")
@@ -1264,9 +1266,10 @@ class DashboardTab(QWidget):
         self.kpi_active = KPI("Aktif", "0/8", "çalışan istemci")
         self.kpi_bait = KPI("Yem tahmini", "0", "seçili istemciler")
         self.kpi_cap = KPI("Yem kapasitesi", "0", "istemci başına")
-        for k in (self.kpi_games, self.kpi_active, self.kpi_bait, self.kpi_cap):
-            k.setMaximumHeight(115)
+        for k in (self.kpi_games, self.kpi_active, self.kpi_bait):
+            k.setMaximumHeight(80)
             kpi_row.addWidget(k, 1)
+        self.kpi_cap.hide()
         layout.addLayout(kpi_row)
 
         # Game windows card
@@ -1325,10 +1328,13 @@ class DashboardTab(QWidget):
         hl.setContentsMargins(12, 4, 4, 4)
         hl.setSpacing(4)
         hl.addLayout(self._kbd_row("F5", "Beklet / devam et"))
+        hl.addLayout(self._kbd_row("F8", "Acil durdur"))
         hl.addLayout(self._kbd_row("Esc", "Konum seçimini iptal"))
         qa_row.addWidget(hints, 1)
         qa_card.body_layout.addLayout(qa_row)
+        qa_card.setMaximumHeight(150)
         layout.addWidget(qa_card)
+        layout.addStretch(1)
 
         self._running = False
         self._paused = False
@@ -1430,10 +1436,10 @@ class WindowRow(QFrame):
         layout.addWidget(self.combo, 0)
 
         self.pill = Pill("BOŞ", "idle")
-        self.pill.setFixedWidth(76)
+        self.pill.setFixedWidth(110)
         layout.addWidget(self.pill, 0)
 
-        self.bait_lbl = QLabel("B ---")
+        self.bait_lbl = QLabel("Yem —")
         self.bait_lbl.setStyleSheet(
             f"font-family: {MONO}; font-size: 10px; color: {C['accent']};"
         )
@@ -1441,7 +1447,7 @@ class WindowRow(QFrame):
         self.bait_lbl.setMinimumWidth(62)
         layout.addWidget(self.bait_lbl)
 
-        self.games_lbl = QLabel("G 0")
+        self.games_lbl = QLabel("Tur 0")
         self.games_lbl.setStyleSheet(
             f"font-family: {MONO}; font-size: 10px; color: {C['accent']};"
         )
@@ -1474,7 +1480,7 @@ class WindowRow(QFrame):
         return self.combo.currentData() or ""
 
     def setStatus(self, kind: str, text: str) -> None:
-        text = {"EMPTY": "BOŞ", "READY": "HAZIR", "RUNNING": "ÇALIŞIYOR", "STOPPED": "DURDU", "PAUSED": "BEKLİYOR"}.get(text, text)
+        text = {"BOŞ": "BOŞ", "HAZIR": "HAZIR", "ÇALIŞIYOR": "ÇALIŞIYOR", "DURDU": "DURDU", "BEKLETİLDİ": "BEKLİYOR"}.get(text, text)
         self.pill.setText("● " + text)
         self.pill.setKind(kind)
         active = (kind == "active")
@@ -1520,8 +1526,8 @@ class InventoryTab(QWidget):
         self._disabled = False
 
         # --- Inventory pages ---
-        pages_card = Card("Inventory Page Coordinates")
-        self.guide_btn = QPushButton("  Guide")
+        pages_card = Card("Envanter sayfaları")
+        self.guide_btn = QPushButton("  Rehber")
         self.guide_btn.setProperty("class", "BtnGhost")
         self.guide_btn.setIcon(make_icon("help", 12, C["text"]))
         self.guide_btn.setCursor(Qt.PointingHandCursor)
@@ -1533,7 +1539,7 @@ class InventoryTab(QWidget):
             row.setSpacing(8)
             for n in page_row:
                 key = f"page{n}"
-                pill = CoordPill(f"Page {n}", optional=(n > 4))
+                pill = CoordPill(f"Sayfa {n}", optional=(n > 4))
                 pill.clicked.connect(lambda k=key: self._on_pill_clicked(k))
                 pill.unset_requested.connect(lambda k=key: self.unset_coord.emit(k))
                 self.coord_pills[key] = pill
@@ -1542,13 +1548,13 @@ class InventoryTab(QWidget):
         layout.addWidget(pages_card)
 
         # --- Action coords ---
-        action_card = Card("Action Coordinates")
+        action_card = Card("İşlem konumları")
         action_row = QHBoxLayout()
         action_row.setSpacing(8)
         for label, key, optional in [
-            ("Drop / Sell", "drop", True),
-            ("Confirm", "confirm", False),
-            ("Armor Slot", "armor", True),
+            ("Bırak / sat", "drop", True),
+            ("Onayla", "confirm", False),
+            ("Zırh yuvası", "armor", True),
         ]:
             pill = CoordPill(label, optional=optional)
             pill.clicked.connect(lambda k=key: self._on_pill_clicked(k))
@@ -1559,22 +1565,22 @@ class InventoryTab(QWidget):
         layout.addWidget(action_card)
 
         # --- Auto fish handling ---
-        auto_card = Card("Automatic Fish Handling")
-        self.auto_check = QCheckBox("Enable")
+        auto_card = Card("Balık işlemleri")
+        self.auto_check = QCheckBox("Etkinleştir")
         self.auto_check.toggled.connect(self.auto_fish_toggled.emit)
         auto_card.addAction(self.auto_check)
         body = QHBoxLayout()
         body.setSpacing(12)
         desc = QLabel()
         desc.setText(
-            f"Pick which fish and items to <span style='color:{C['green']};'>keep</span>, "
-            f"<span style='color:{C['red']};'>drop/sell</span>, or "
-            f"<span style='color:{C['blue']};'>open</span> after each catch."
+            f"Balık ve eşyalar için <span style='color:{C['green']};'>sakla</span>, "
+            f"<span style='color:{C['red']};'>bırak/sat</span> veya "
+            f"<span style='color:{C['blue']};'>aç</span> işlemini seçin."
         )
         desc.setTextFormat(Qt.RichText)
         desc.setWordWrap(True)
         desc.setStyleSheet(f"color: {C['text_dim']}; font-family: {MONO}; font-size: 11px;")
-        self.configure_fish_btn = QPushButton("  Configure Fish and Items")
+        self.configure_fish_btn = QPushButton("  Balık ve eşya seçimi")
         self.configure_fish_btn.setProperty("class", "Btn")
         self.configure_fish_btn.setIcon(make_icon("fish", 14, C["text"]))
         self.configure_fish_btn.setCursor(Qt.PointingHandCursor)
@@ -1595,11 +1601,8 @@ class InventoryTab(QWidget):
 
     def _show_guide(self) -> None:
         QMessageBox.information(
-            self, "Inventory pages",
-            "Pages 1–4 are required for inventory rotation.\n\n"
-            "Click each tile, then click the matching inventory tab in your "
-            "game window. Pages 5–8 are optional (only set them if you actually "
-            "use those inventory tabs)."
+            self, "Envanter sayfaları",
+            "İlk dört envanter sayfasını tanımlayın.\n\nHer düğmeye, ardından oyundaki ilgili envanter sekmesine tıklayın. 5–8. sayfalar isteğe bağlıdır."
         )
 
     def setCoord(self, key: str, coords: Optional[Tuple[int, int]]) -> None:
@@ -1663,7 +1666,7 @@ class SettingsTab(QWidget):
         layout.setSpacing(10)
 
         # --- Bot behavior ---
-        bb = Card("Bot Behavior")
+        bb = Card("Balık tutma ayarları")
         grid = QHBoxLayout()
         grid.setSpacing(14)
         # Left col: checks
@@ -1677,12 +1680,12 @@ class SettingsTab(QWidget):
         crow = QHBoxLayout(self.classic_delay_row)
         crow.setContentsMargins(22, 0, 0, 0)
         crow.setSpacing(6)
-        crow.addWidget(self._mono_label("Delay"))
+        crow.addWidget(self._mono_label("Bekleme"))
         self.classic_delay_input = QLineEdit("3.0")
         self.classic_delay_input.setFixedWidth(60)
         self.classic_delay_input.editingFinished.connect(self._on_changed)
         crow.addWidget(self.classic_delay_input)
-        crow.addWidget(self._mono_label("sec", color=C["text_mute"]))
+        crow.addWidget(self._mono_label("sn", color=C["text_mute"]))
         crow.addStretch(1)
         self.classic_delay_row.setVisible(False)
         left.addWidget(self.classic_delay_row)
@@ -1711,10 +1714,10 @@ class SettingsTab(QWidget):
         # Right col: bait keys with quantity
         right = QVBoxLayout()
         right.setSpacing(12)
-        bk_label = QLabel("BAIT KEYS")
+        bk_label = QLabel("Yem tuşları")
         bk_label.setStyleSheet(
             f"font-family: {MONO}; font-size: 10px; color: {C['text_mute']}; "
-            f"letter-spacing: 1px;"
+            f"letter-spacing: 0px;"
         )
         right.addWidget(bk_label)
         
@@ -1733,13 +1736,13 @@ class SettingsTab(QWidget):
         # Single quantity input
         qty_row = QHBoxLayout()
         qty_row.setSpacing(8)
-        qty_lbl = QLabel("Bait Quantity per key")
+        qty_lbl = QLabel("Her tuştaki yem sayısı")
         qty_lbl.setStyleSheet(f"color: {C['text']}; font-family: {MONO}; font-size: 11px;")
         qty_row.addWidget(qty_lbl)
         self.bait_qty_input = QLineEdit("200")
         self.bait_qty_input.setFixedWidth(70)
         self.bait_qty_input.setAlignment(Qt.AlignRight)
-        self.bait_qty_input.setToolTip("Bait amount for all selected keys")
+        self.bait_qty_input.setToolTip("Seçili tuşların her birindeki yem miktarı")
         self.bait_qty_input.editingFinished.connect(self._on_changed)
         qty_row.addWidget(self.bait_qty_input)
         qty_row.addStretch(1)
@@ -1751,24 +1754,23 @@ class SettingsTab(QWidget):
         layout.addWidget(bb)
 
         # --- Quick Skip ---
-        qs = Card("Quick Skip")
-        self.qs_enable = QCheckBox("Enable")
+        qs = Card("Animasyonu atla")
+        self.qs_enable = QCheckBox("Etkinleştir")
         self.qs_enable.toggled.connect(self._on_qs_enable)
         qs.addAction(self.qs_enable)
         qs_row = QHBoxLayout()
         qs_row.setSpacing(16)
         modes = QHBoxLayout()
         modes.setSpacing(14)
-        self.qs_horse = QCheckBox("Horse")
-        self.qs_armor = QCheckBox("Armor")
+        self.qs_horse = QCheckBox("At")
+        self.qs_armor = QCheckBox("Zırh")
         for cb in (self.qs_horse, self.qs_armor):
             cb.toggled.connect(self._on_qs_mode)
         modes.addWidget(self.qs_horse)
         modes.addWidget(self.qs_armor)
         qs_row.addLayout(modes)
         qs_desc = QLabel(
-            "Skips the fishing animation screen by clicking the armor slot or pressing the horse "
-            "hotkey between catches."
+            "Yakalamalar arasında at tuşuyla veya zırh yuvasına tıklayarak animasyonu atlar."
         )
         qs_desc.setWordWrap(True)
         qs_desc.setStyleSheet(
@@ -1780,19 +1782,19 @@ class SettingsTab(QWidget):
         layout.addWidget(qs)
 
         # --- Profiles ---
-        pr = Card("Profiles & Presets")
+        pr = Card("Profiller")
         pr_row = QHBoxLayout()
         pr_row.setSpacing(8)
         self.profile_combo = QComboBox()
-        self.profile_combo.addItems(["Default Profile"])
+        self.profile_combo.addItems(["Varsayılan profil"])
         pr_row.addWidget(self.profile_combo, 1)
-        self.profile_load_btn = QPushButton("  Load")
+        self.profile_load_btn = QPushButton("  Yükle")
         self.profile_load_btn.setProperty("class", "Btn")
         self.profile_load_btn.setIcon(make_icon("folder", 12, C["text"]))
         self.profile_load_btn.setCursor(Qt.PointingHandCursor)
         self.profile_load_btn.clicked.connect(self._profile_load)
         pr_row.addWidget(self.profile_load_btn)
-        self.profile_save_btn = QPushButton("  Save As…")
+        self.profile_save_btn = QPushButton("  Farklı kaydet…")
         self.profile_save_btn.setProperty("class", "Btn")
         self.profile_save_btn.setIcon(make_icon("save", 12, C["text"]))
         self.profile_save_btn.setCursor(Qt.PointingHandCursor)
@@ -1800,15 +1802,14 @@ class SettingsTab(QWidget):
         pr_row.addWidget(self.profile_save_btn)
         pr.body_layout.addLayout(pr_row)
         pr_hint = QLabel(
-            "Profiles store coordinates, fish actions, bait keys and timing. "
-            "Saved next to bot_config.json."
+            "Profiller konumları, balık işlemlerini, yem tuşlarını ve zamanlamayı saklar."
         )
         pr_hint.setStyleSheet(f"color: {C['text_mute']}; font-family: {MONO}; font-size: 10px;")
         pr.body_layout.addWidget(pr_hint)
         layout.addWidget(pr)
 
         # --- Theme ---
-        th = Card("Theme · Accent Color")
+        th = Card("Vurgu rengi")
         th_row = QHBoxLayout()
         th_row.setSpacing(6)
         self.swatches: Dict[str, QLabel] = {}
@@ -1824,7 +1825,7 @@ class SettingsTab(QWidget):
                     "stop:0 #ff6ec7, stop:0.5 #ffb627, stop:1 #5aa9ff); "
                     "border-radius: 4px;"
                 )
-                sw.setToolTip("Custom color…")
+                sw.setToolTip("Özel renk…")
             else:
                 sw.setStyleSheet(f"background: {color}; border-radius: 4px;")
             sw.mousePressEvent = lambda _ev, c=color: self._select_swatch(c)
@@ -1987,44 +1988,44 @@ FISH_DISPLAY: List[Tuple[str, str, str]] = [
     ("Barsch", "Barsch_living.jpg", "🐟"),
     ("Brookforel", "Brookforell_living.jpg", "🐟"),
     ("Carp", "Carp_living.jpg", "🐠"),
-    ("Catfish", "Catsfish_living.jpg", "🐟"),
-    ("Crab", "Crab_living.jpg", "🦀"),
-    ("Goldfish", "Goldfish_living.jpg", "🐠"),
-    ("Grasscarp", "Grasscarp_living.jpg", "🐟"),
-    ("Large sandfish", "Large_zander_living.jpg", "🐟"),
-    ("Lotusfish", "Lotusfish_living.jpg", "🐟"),
-    ("Mandarinfish", "Mandarinfish_living.jpg", "🐠"),
-    ("Mirrorcarp", "Mirrorcarp_living.jpg", "🐟"),
-    ("Rainbowfish", "Rainbowforell_living.jpg", "🌈"),
-    ("Redfeather", "Redfeather_living.jpg", "🐟"),
-    ("Riverforel", "Riverforell_living.jpg", "🐟"),
-    ("Salmon", "Salmon_living.jpg", "🐟"),
+    ("Yayın balığı", "Catsfish_living.jpg", "🐟"),
+    ("Yengeç", "Crab_living.jpg", "🦀"),
+    ("Japon balığı", "Goldfish_living.jpg", "🐠"),
+    ("Ot sazanı", "Grasscarp_living.jpg", "🐟"),
+    ("Büyük sudak", "Large_zander_living.jpg", "🐟"),
+    ("Lotus balığı", "Lotusfish_living.jpg", "🐟"),
+    ("Mandalina balığı", "Mandarinfish_living.jpg", "🐠"),
+    ("Aynalı sazan", "Mirrorcarp_living.jpg", "🐟"),
+    ("Gökkuşağı alabalığı", "Rainbowforell_living.jpg", "🌈"),
+    ("Kızılkanat", "Redfeather_living.jpg", "🐟"),
+    ("Nehir alabalığı", "Riverforell_living.jpg", "🐟"),
+    ("Somon", "Salmon_living.jpg", "🐟"),
     ("Shiri", "Shiri_living.jpg", "🐟"),
-    ("Shrimp", "Shrimp_living.jpg", "🦐"),
-    ("Skygazer", "Skygazer_living.jpg", "🐟"),
-    ("Snake head", "Snake_head_living.jpg", "🐍"),
+    ("Karides", "Shrimp_living.jpg", "🦐"),
+    ("Gökyüzü balığı", "Skygazer_living.jpg", "🐟"),
+    ("Yılanbaş", "Snake_head_living.jpg", "🐍"),
     ("Stint", "Stint_living.jpg", "🐟"),
-    ("Tenchi", "Tenchi_living.jpg", "🐟"),
+    ("Kadife balığı", "Tenchi_living.jpg", "🐟"),
     ("Vai", "Vai_living.jpg", "🐟"),
     ("Yabby", "Yabby_living.jpg", "🦞"),
-    ("Zander", "Zander_living.jpg", "🐟"),
-    ("Zebra", "Zebra_living.jpg", "🐟"),
+    ("Sudak", "Zander_living.jpg", "🐟"),
+    ("Zebra balığı", "Zebra_living.jpg", "🐟"),
 ]
 
 ITEM_DISPLAY: List[Tuple[str, str, str]] = [
-    ("Black Dye", "Black_Dye_item.jpg", "🎨"),
-    ("Bleach", "Bleach_item.jpg", "🧴"),
-    ("Brown Dye", "Brown_Dye_item.jpg", "🎨"),
-    ("Gold", "Gold_item.jpg", "💰"),
-    ("Goldring", "Goldring_item.jpg", "💍"),
-    ("Kelp Key", "Kelp_Key_item.jpg", "🗝️"),
-    ("Lucys ring", "Lucys_ring_item.jpg", "💍"),
-    ("Red Dye", "Red_Dye_item.jpg", "🎨"),
-    ("Refugee coin", "Refugee_cape_item.jpg", "🪙"),
-    ("Sage King…", "Sage_King_Glove_item.jpg", "👑"),
-    ("Symbol wing", "Symbol_wise_emperors_item.jpg", "✨"),
-    ("White Dye", "White_Dye_item.jpg", "🎨"),
-    ("Yellow Dye", "Yellow_Dye_item.jpg", "🎨"),
+    ("Siyah boya", "Black_Dye_item.jpg", "🎨"),
+    ("Beyazlatıcı", "Bleach_item.jpg", "🧴"),
+    ("Kahverengi boya", "Brown_Dye_item.jpg", "🎨"),
+    ("Altın", "Gold_item.jpg", "💰"),
+    ("Altın yüzük", "Goldring_item.jpg", "💍"),
+    ("Yosun anahtarı", "Kelp_Key_item.jpg", "🗝️"),
+    ("Lucy’nin yüzüğü", "Lucys_ring_item.jpg", "💍"),
+    ("Kırmızı boya", "Red_Dye_item.jpg", "🎨"),
+    ("Kaçış eşyası", "Refugee_cape_item.jpg", "🪙"),
+    ("Bilge kral eşyası", "Sage_King_Glove_item.jpg", "👑"),
+    ("Bilge sembolü", "Symbol_wise_emperors_item.jpg", "✨"),
+    ("Beyaz boya", "White_Dye_item.jpg", "🎨"),
+    ("Sarı boya", "Yellow_Dye_item.jpg", "🎨"),
 ]
 
 
@@ -2035,7 +2036,7 @@ def section_divider(text: str) -> QHBoxLayout:
     label.setProperty("class", "SectionDivider")
     label.setStyleSheet(
         f"color: {C['accent']}; font-family: {MONO}; font-size: 10px; "
-        f"font-weight: 700; letter-spacing: 2px;"
+        f"font-weight: 700; letter-spacing: 0px;"
     )
     line = QFrame()
     line.setFixedHeight(1)
@@ -2050,7 +2051,7 @@ class FishModal(QDialog):
 
     def __init__(self, current_actions: Dict[str, str], parent: Optional[QWidget] = None):
         super().__init__(parent)
-        self.setWindowTitle("Fish & Item Selection")
+        self.setWindowTitle("Balık ve eşya seçimi")
         self.setModal(True)
         self.resize(720, 660)
         self.setMinimumSize(700, 600)
@@ -2068,20 +2069,20 @@ class FishModal(QDialog):
         header.setProperty("class", "ModalHeader")
         hl = QHBoxLayout(header)
         hl.setContentsMargins(16, 12, 12, 12)
-        title = QLabel("FISH & ITEM SELECTION")
+        title = QLabel("Balık ve eşya seçimi")
         title.setProperty("class", "ModalTitle")
         title.setStyleSheet(
             f"color: {C['accent']}; font-family: {MONO}; font-size: 13px; "
-            f"font-weight: 700; letter-spacing: 2px;"
+            f"font-weight: 700; letter-spacing: 0px;"
         )
         hl.addWidget(title)
         hl.addStretch(1)
         legend = QLabel(
-            f"<span style='color:{C['green']}'>K</span> Keep "
+            f"<span style='color:{C['green']}'>S</span> Sakla "
             f"<span style='color:{C['text_mute']}'>·</span> "
-            f"<span style='color:{C['red']}'>D</span> Drop "
+            f"<span style='color:{C['red']}'>B</span> Bırak "
             f"<span style='color:{C['text_mute']}'>·</span> "
-            f"<span style='color:{C['blue']}'>O</span> Open"
+            f"<span style='color:{C['blue']}'>A</span> Aç"
         )
         legend.setStyleSheet(f"font-family: {MONO}; font-size: 10px; color: {C['text_mute']};")
         legend.setTextFormat(Qt.RichText)
@@ -2096,7 +2097,7 @@ class FishModal(QDialog):
         bl.setContentsMargins(16, 12, 16, 12)
         bl.setSpacing(8)
 
-        bl.addLayout(section_divider("Fish"))
+        bl.addLayout(section_divider("Balıklar"))
         fish_grid = QGridLayout()
         fish_grid.setSpacing(10)
         for i, (name, asset, emoji) in enumerate(FISH_DISPLAY):
@@ -2106,7 +2107,7 @@ class FishModal(QDialog):
             fish_grid.addWidget(tile, i // 5, i % 5)
         bl.addLayout(fish_grid)
 
-        bl.addLayout(section_divider("Items"))
+        bl.addLayout(section_divider("Eşyalar"))
         items_grid = QGridLayout()
         items_grid.setSpacing(10)
         for i, (name, asset, emoji) in enumerate(ITEM_DISPLAY):
@@ -2126,9 +2127,9 @@ class FishModal(QDialog):
         fl.setContentsMargins(16, 12, 16, 12)
         fl.setSpacing(6)
         for label, slot in [
-            ("Keep All",  lambda: self._set_all([a for _, a, _ in FISH_DISPLAY] + [a for _, a, _ in ITEM_DISPLAY], "keep")),
-            ("Drop All",  lambda: self._set_all([a for _, a, _ in FISH_DISPLAY] + [a for _, a, _ in ITEM_DISPLAY], "drop")),
-            ("Open All",  self._open_all),
+            ("Hepsini sakla",  lambda: self._set_all([a for _, a, _ in FISH_DISPLAY] + [a for _, a, _ in ITEM_DISPLAY], "keep")),
+            ("Hepsini bırak",  lambda: self._set_all([a for _, a, _ in FISH_DISPLAY] + [a for _, a, _ in ITEM_DISPLAY], "drop")),
+            ("Hepsini aç",  self._open_all),
         ]:
             b = QPushButton(label)
             b.setProperty("class", "BtnGhost")
@@ -2136,11 +2137,11 @@ class FishModal(QDialog):
             b.clicked.connect(slot)
             fl.addWidget(b)
         fl.addStretch(1)
-        cancel_btn = QPushButton("Cancel")
+        cancel_btn = QPushButton("İptal")
         cancel_btn.setProperty("class", "Btn")
         cancel_btn.setCursor(Qt.PointingHandCursor)
         cancel_btn.clicked.connect(self.reject)
-        save_btn = QPushButton("  Save")
+        save_btn = QPushButton("  Kaydet")
         save_btn.setProperty("class", "BtnPrimary")
         save_btn.setIcon(make_icon("save", 12, "#1a1108"))
         save_btn.setCursor(Qt.PointingHandCursor)
@@ -2193,7 +2194,7 @@ class FishTile(QFrame):
         nm.setWordWrap(True)
         layout.addWidget(nm)
 
-        seg_opts = [("keep", "K"), ("drop", "D")] if kd_only else [("keep", "K"), ("drop", "D"), ("open", "O")]
+        seg_opts = [("keep", "S"), ("drop", "B")] if kd_only else [("keep", "S"), ("drop", "B"), ("open", "A")]
         self.seg = Segmented(seg_opts, action if not (kd_only and action == "open") else "")
         self.seg.changed.connect(self._on_seg)
         layout.addWidget(self.seg)
@@ -2228,39 +2229,39 @@ class TimingModal(QDialog):
     saved = Signal(dict)  # {timing_key: seconds}
 
     GROUPS: List[Tuple[str, List[Tuple[str, str, int, int, int]]]] = [
-        ("Fish Clicking", [
-            ("Cursor settle before click", "timing_cursor_settle", 12,  3,  50),
-            ("Mouse button hold",          "timing_button_hold",    8,  3,  50),
-            ("Post-click settle",          "timing_post_click",    35, 10, 100),
+        ("Balığa tıklama", [
+            ("Tıklama öncesi bekleme", "timing_cursor_settle", 12,  3,  50),
+            ("Fare düğmesine basılı tutma",          "timing_button_hold",    8,  3,  50),
+            ("Tıklama sonrası bekleme",          "timing_post_click",    35, 10, 100),
         ]),
-        ("Click Rhythm (Human-like)", [
-            ("Min delay between attempts", "timing_human_min", 150,  50,  800),
-            ("Max delay between attempts", "timing_human_max", 400, 100, 1200),
+        ("Tıklama aralığı", [
+            ("En kısa deneme aralığı", "timing_human_min", 150,  50,  800),
+            ("En uzun deneme aralığı", "timing_human_max", 400, 100, 1200),
         ]),
-        ("Key Presses", [
-            ("Key hold duration",     "timing_key_hold",   25, 10, 100),
-            ("Pre-key window settle", "timing_key_settle", 30, 10,  60),
+        ("Tuş basımları", [
+            ("Tuşa basılı tutma",     "timing_key_hold",   25, 10, 100),
+            ("Tuş öncesi pencere beklemesi", "timing_key_settle", 30, 10,  60),
         ]),
-        ("Bait & Cast", [
-            ("Bait → Cast key delay", "timing_cast_interkey", 50, 20, 200),
+        ("Yem ve olta", [
+            ("Yem ve olta arasındaki bekleme", "timing_cast_interkey", 50, 20, 200),
         ]),
-        ("Item Handling", [
-            ("Wait for item after catch",    "timing_catch_wait",     400, 100, 1500),
-            ("Wait after right-click (open)","timing_open_wait",      100,  50,  500),
-            ("Dead-fish re-check delay",     "timing_dead_fish_check",100,  50,  500),
+        ("Eşya işlemleri", [
+            ("Yakalama sonrası eşyayı bekleme",    "timing_catch_wait",     400, 100, 1500),
+            ("Sağ tıklama sonrası bekleme","timing_open_wait",      100,  50,  500),
+            ("Ölü balığı tekrar kontrol etme",     "timing_dead_fish_check",100,  50,  500),
         ]),
-        ("Drop Action", [
-            ("Pause between drop steps", "timing_drop_settle", 120, 50, 600),
+        ("Bırakma işlemi", [
+            ("Bırakma adımları arasındaki bekleme", "timing_drop_settle", 120, 50, 600),
         ]),
-        ("Quick Skip", [
-            ("Gap between CTRL+G presses", "timing_quickskip_between", 100, 50, 600),
-            ("Settle after quick skip",    "timing_quickskip_after",   100, 50, 400),
+        ("Animasyonu atla", [
+            ("CTRL+G basımları arasındaki bekleme", "timing_quickskip_between", 100, 50, 600),
+            ("Animasyon atlama sonrası bekleme",    "timing_quickskip_after",   100, 50, 400),
         ]),
     ]
 
     def __init__(self, current: Dict[str, float], parent: Optional[QWidget] = None):
         super().__init__(parent)
-        self.setWindowTitle("Timing Settings")
+        self.setWindowTitle("Zamanlama ayarları")
         self.setModal(True)
         self.resize(450, 640)
         self._sliders: Dict[str, QSlider] = {}
@@ -2275,10 +2276,10 @@ class TimingModal(QDialog):
         header.setProperty("class", "ModalHeader")
         hl = QHBoxLayout(header)
         hl.setContentsMargins(16, 12, 12, 12)
-        title = QLabel("TIMING SETTINGS")
+        title = QLabel("Zamanlama ayarları")
         title.setStyleSheet(
             f"color: {C['accent']}; font-family: {MONO}; font-size: 13px; "
-            f"font-weight: 700; letter-spacing: 2px;"
+            f"font-weight: 700; letter-spacing: 0px;"
         )
         hl.addWidget(title)
         hl.addStretch(1)
@@ -2298,7 +2299,7 @@ class TimingModal(QDialog):
         bl = QVBoxLayout(body)
         bl.setContentsMargins(16, 12, 16, 12)
         bl.setSpacing(8)
-        intro = QLabel("Only timings that directly produce OS inputs are exposed here.")
+        intro = QLabel("Fare ve klavye işlemlerinin bekleme sürelerini ayarlayın.")
         intro.setStyleSheet(f"color: {C['text_mute']}; font-family: {MONO}; font-size: 10px;")
         bl.addWidget(intro)
         for group_name, items in self.GROUPS:
@@ -2337,16 +2338,16 @@ class TimingModal(QDialog):
         footer.setProperty("class", "ModalFooter")
         fl = QHBoxLayout(footer)
         fl.setContentsMargins(16, 12, 16, 12)
-        reset_btn = QPushButton("  Reset Defaults")
+        reset_btn = QPushButton("  Varsayılanlara dön")
         reset_btn.setProperty("class", "BtnGhost")
         reset_btn.setIcon(make_icon("reset", 12, C["text"]))
         reset_btn.setCursor(Qt.PointingHandCursor)
         reset_btn.clicked.connect(self._reset)
         fl.addWidget(reset_btn)
         fl.addStretch(1)
-        cancel = QPushButton("Cancel"); cancel.setProperty("class", "Btn"); cancel.setCursor(Qt.PointingHandCursor)
+        cancel = QPushButton("İptal"); cancel.setProperty("class", "Btn"); cancel.setCursor(Qt.PointingHandCursor)
         cancel.clicked.connect(self.reject)
-        save = QPushButton("  Save"); save.setProperty("class", "BtnPrimary")
+        save = QPushButton("  Kaydet"); save.setProperty("class", "BtnPrimary")
         save.setIcon(make_icon("save", 12, "#1a1108"))
         save.setCursor(Qt.PointingHandCursor)
         save.clicked.connect(self._save)
@@ -2379,11 +2380,11 @@ class WizardModal(QDialog):
 
     def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
-        self.setWindowTitle("First-Run Setup")
+        self.setWindowTitle("Kurulum rehberi")
         self.setModal(True)
         self.resize(560, 480)
         self._step = 0
-        self._steps = ["Welcome", "Pick Windows", "Set Coordinates", "Bait & Behavior", "Review"]
+        self._steps = ["Başlangıç", "Pick Windows", "Set Coordinates", "Bait & Behavior", "Son kontrol"]
 
         outer = QVBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 0)
@@ -2393,10 +2394,10 @@ class WizardModal(QDialog):
         header.setProperty("class", "ModalHeader")
         hl = QHBoxLayout(header)
         hl.setContentsMargins(16, 12, 12, 12)
-        title = QLabel("FIRST-RUN SETUP")
+        title = QLabel("Kurulum rehberi")
         title.setStyleSheet(
             f"color: {C['accent']}; font-family: {MONO}; font-size: 13px; "
-            f"font-weight: 700; letter-spacing: 2px;"
+            f"font-weight: 700; letter-spacing: 0px;"
         )
         hl.addWidget(title)
         hl.addStretch(1)
@@ -2448,15 +2449,15 @@ class WizardModal(QDialog):
         footer.setProperty("class", "ModalFooter")
         fl = QHBoxLayout(footer)
         fl.setContentsMargins(16, 12, 16, 12)
-        skip = QPushButton("Skip"); skip.setProperty("class", "BtnGhost")
+        skip = QPushButton("Atla"); skip.setProperty("class", "BtnGhost")
         skip.setCursor(Qt.PointingHandCursor)
         skip.clicked.connect(self.reject)
         fl.addWidget(skip)
         fl.addStretch(1)
-        self.back_btn = QPushButton("Back"); self.back_btn.setProperty("class", "Btn")
+        self.back_btn = QPushButton("Geri"); self.back_btn.setProperty("class", "Btn")
         self.back_btn.setCursor(Qt.PointingHandCursor)
         self.back_btn.clicked.connect(self._back)
-        self.next_btn = QPushButton("Next  ")
+        self.next_btn = QPushButton("İleri  ")
         self.next_btn.setProperty("class", "BtnPrimary")
         self.next_btn.setIcon(make_icon("chevron-right", 12, "#1a1108"))
         self.next_btn.setCursor(Qt.PointingHandCursor)
@@ -2478,7 +2479,7 @@ class WizardModal(QDialog):
             txt.style().unpolish(txt); txt.style().polish(txt)
         self.back_btn.setVisible(self._step > 0)
         is_last = self._step == len(self._steps) - 1
-        self.next_btn.setText("Finish  " if is_last else "Next  ")
+        self.next_btn.setText("Bitir  " if is_last else "İleri  ")
 
     def _next(self) -> None:
         if self._step >= len(self._steps) - 1:
@@ -2499,18 +2500,16 @@ class WizardModal(QDialog):
         l.setAlignment(Qt.AlignCenter)
         l.setContentsMargins(20, 20, 20, 20)
         l.setSpacing(12)
-        emoji = QLabel("🐒")
+        emoji = QLabel("Kurulum")
         emoji.setStyleSheet("font-size: 48px;")
         emoji.setAlignment(Qt.AlignCenter)
         l.addWidget(emoji)
-        title = QLabel("Welcome to Fishing Puzzle Player")
+        title = QLabel("Demirware’e hoş geldiniz")
         title.setStyleSheet(f"font-family: {MONO}; font-size: 18px; color: {C['accent']};")
         title.setAlignment(Qt.AlignCenter)
         l.addWidget(title)
         body = QLabel(
-            "We'll walk you through the basics: picking your game windows, "
-            "setting click coordinates, and choosing how you want fish handled. "
-            "Takes about a minute."
+            "Bu rehber temel adımları açıklar. Gerçek ayarları İstemciler, Envanter ve Ayarlar sekmelerinden yapın."
         )
         body.setWordWrap(True)
         body.setMaximumWidth(380)
@@ -2524,7 +2523,7 @@ class WizardModal(QDialog):
         l = QVBoxLayout(w)
         l.setContentsMargins(16, 16, 16, 16)
         l.setSpacing(8)
-        l.addWidget(self._mono_label("Detected windows", color=C["text"]))
+        l.addWidget(self._mono_label("Bulunan pencereler", color=C["text"]))
         if WindowManager:
             try:
                 names = [n for n, _ in WindowManager.get_all_windows()][:6]
@@ -2533,7 +2532,7 @@ class WizardModal(QDialog):
         else:
             names = []
         if not names:
-            empty = QLabel("No windows detected. Open your game and click Refresh on the Dashboard tab.")
+            empty = QLabel("Pencere bulunamadı. Oyunu açıp İstemciler sekmesinde Yenile’ye basın.")
             empty.setStyleSheet(f"color: {C['text_mute']}; font-family: {MONO}; font-size: 11px;")
             l.addWidget(empty)
         for n in names:
@@ -2560,13 +2559,12 @@ class WizardModal(QDialog):
         l.setContentsMargins(16, 16, 16, 16)
         l.setSpacing(8)
         intro = QLabel(
-            "Click each tile, then click the matching point in your game. "
-            "Pages 1-4 are required."
+            "Envanter sekmesinde konum düğmesini seçip oyundaki karşılığına tıklayın. İlk dört sayfa gereklidir."
         )
         intro.setWordWrap(True)
         intro.setStyleSheet(f"color: {C['text_dim']}; font-family: {MONO}; font-size: 11px;")
         l.addWidget(intro)
-        for label in ["Page 1", "Page 2", "Page 3", "Page 4", "Drop / Sell", "Confirm"]:
+        for label in ["Sayfa 1", "Sayfa 2", "Sayfa 3", "Sayfa 4", "Bırak / sat", "Onayla"]:
             l.addWidget(CoordPill(label))
         l.addStretch(1)
         return w
@@ -2576,9 +2574,9 @@ class WizardModal(QDialog):
         l = QVBoxLayout(w)
         l.setContentsMargins(16, 16, 16, 16)
         l.setSpacing(12)
-        h = QCheckBox("Human-like clicking (recommended)"); h.setChecked(True); l.addWidget(h)
-        s = QCheckBox("Sound alert when out of bait"); s.setChecked(True); l.addWidget(s)
-        l.addWidget(self._mono_label("BAIT KEYS", color=C["text_mute"]))
+        h = QCheckBox("Yumuşak fare hareketi"); h.setChecked(True); l.addWidget(h)
+        s = QCheckBox("Yem bitince sesli bildirim"); s.setChecked(True); l.addWidget(s)
+        l.addWidget(self._mono_label("Yem tuşları", color=C["text_mute"]))
         grid = QGridLayout()
         grid.setSpacing(6)
         for i, k in enumerate(["1", "2", "3", "4"]):
@@ -2594,21 +2592,21 @@ class WizardModal(QDialog):
         l.setAlignment(Qt.AlignCenter)
         l.setContentsMargins(20, 20, 20, 20)
         l.setSpacing(8)
-        emoji = QLabel("🎣"); emoji.setStyleSheet("font-size: 48px;"); emoji.setAlignment(Qt.AlignCenter)
+        emoji = QLabel("Son adım"); emoji.setStyleSheet("font-size: 48px;"); emoji.setAlignment(Qt.AlignCenter)
         l.addWidget(emoji)
-        ttl = QLabel("You're all set!")
+        ttl = QLabel("Ayarları tamamlayın")
         ttl.setStyleSheet(f"font-family: {MONO}; font-size: 16px; color: {C['accent']};")
         ttl.setAlignment(Qt.AlignCenter)
         l.addWidget(ttl)
         body = QLabel(
-            "Hit <b>Start All</b> on the dashboard. Use <b>F5</b> to pause anytime."
+            "Envanter ve Ayarlar sekmelerindeki ayarları kaydedin. Ardından Tümünü başlat’a basın. F5 bekletir, F8 durdurur."
         )
         body.setTextFormat(Qt.RichText)
         body.setStyleSheet(f"color: {C['text_dim']}; font-family: {MONO}; font-size: 11px;")
         body.setAlignment(Qt.AlignCenter)
         body.setMaximumWidth(380)
         l.addWidget(body)
-        jigsaw_btn = QPushButton("  Open Jigsaw Solver")
+        jigsaw_btn = QPushButton("  Yapbozu aç")
         jigsaw_btn.setProperty("class", "Btn")
         jigsaw_btn.setIcon(make_icon("grid", 12, C["text"]))
         jigsaw_btn.setCursor(Qt.PointingHandCursor)
@@ -2684,7 +2682,7 @@ class SolverCacheManager(QObject):
                 return
             if self._cache_exists():
                 self._state = "ready"
-                self.state_changed.emit("ready", "Solver cache ready.")
+                self.state_changed.emit("ready", "Yapboz verileri hazır.")
                 return
             self._state = "building"
             self._error = ""
@@ -2694,7 +2692,7 @@ class SolverCacheManager(QObject):
             self._thread.start()
         self.state_changed.emit(
             "building",
-            "Building solver cache. This may take 1–5 minutes — please wait..."
+            "Yapboz verileri hazırlanıyor. Bu işlem 1–5 dakika sürebilir."
         )
 
     def _run_build(self) -> None:
@@ -2715,7 +2713,7 @@ class SolverCacheManager(QObject):
             self.state_changed.emit("failed", f"Cache build failed: {exc}")
             return
         self._state = "ready"
-        self.state_changed.emit("ready", "Solver cache ready.")
+        self.state_changed.emit("ready", "Yapboz verileri hazır.")
 
 
 class JigsawGridOverlay(QWidget):
@@ -2865,7 +2863,7 @@ class JigsawWindowRow(QFrame):
         self.name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         layout.addWidget(self.name_label, 1)
 
-        self.crates_lbl = QLabel("Opened Crates: 0")
+        self.crates_lbl = QLabel("Açılan sandık: 0")
         self.crates_lbl.setStyleSheet(
             f"font-family: {MONO}; font-size: 10px; color: {C['accent']};"
         )
@@ -2876,7 +2874,7 @@ class JigsawWindowRow(QFrame):
         layout.addWidget(self.crates_lbl, 0)
 
     def setCrates(self, count: int) -> None:
-        self.crates_lbl.setText(f"Opened Crates: {count}")
+        self.crates_lbl.setText(f"Açılan sandık: {count}")
 
     def setActive(self, active: bool) -> None:
         self.setProperty("active", "true" if active else "false")
@@ -2901,7 +2899,7 @@ class JigsawSolverDialog(QDialog):
     def __init__(self, parent: "FishbotWindow"):
         super().__init__(parent)
         self.parent_window = parent
-        self.setWindowTitle("Fishing Jigsaw Solver")
+        self.setWindowTitle("Yapboz çözücü")
         self.setMinimumWidth(620)
         self.resize(720, 360)
         self._bots: Dict[int, object] = {}
@@ -2917,10 +2915,10 @@ class JigsawSolverDialog(QDialog):
         header.setProperty("class", "ModalHeader")
         hl = QHBoxLayout(header)
         hl.setContentsMargins(16, 12, 12, 12)
-        title = QLabel("FISHING JIGSAW SOLVER")
+        title = QLabel("Yapboz çözücü")
         title.setStyleSheet(
             f"color: {C['accent']}; font-family: {MONO}; font-size: 13px; "
-            f"font-weight: 700; letter-spacing: 2px;"
+            f"font-weight: 700; letter-spacing: 0px;"
         )
         hl.addWidget(title)
         hl.addStretch(1)
@@ -2943,7 +2941,7 @@ class JigsawSolverDialog(QDialog):
         self.cache_dot.setFixedWidth(14)
         self.cache_dot.setStyleSheet(f"color: {C['red']}; font-size: 18px;")
         crl.addWidget(self.cache_dot)
-        self.cache_status_label = QLabel("Checking solver cache...")
+        self.cache_status_label = QLabel("Yapboz verileri kontrol ediliyor…")
         self.cache_status_label.setWordWrap(True)
         self.cache_status_label.setStyleSheet(
             f"color: {C['text_dim']}; font-family: {MONO}; font-size: 11px;"
@@ -2951,7 +2949,7 @@ class JigsawSolverDialog(QDialog):
         crl.addWidget(self.cache_status_label, 1)
         bl.addWidget(cache_row)
 
-        self.summary_label = QLabel("Idle")
+        self.summary_label = QLabel("Hazır")
         self.summary_label.setStyleSheet(f"color: {C['text_dim']}; font-family: {MONO}; font-size: 11px;")
         bl.addWidget(self.summary_label)
 
@@ -2966,12 +2964,12 @@ class JigsawSolverDialog(QDialog):
         # Grid bounds + confirm coords info row (placed below Game Windows)
         info_row = QHBoxLayout()
         info_row.setSpacing(20)
-        self.grid_info_label = QLabel("Grid: not defined")
+        self.grid_info_label = QLabel("Izgara seçilmedi")
         self.grid_info_label.setStyleSheet(
             f"color: {C['text_mute']}; font-family: {MONO}; font-size: 12px; font-weight: 600;"
         )
         info_row.addWidget(self.grid_info_label)
-        self.confirm_info_label = QLabel("Confirm: not set")
+        self.confirm_info_label = QLabel("Onay konumu seçilmedi")
         self.confirm_info_label.setStyleSheet(
             f"color: {C['red']}; font-family: {MONO}; font-size: 12px; font-weight: 600;"
         )
@@ -2985,26 +2983,26 @@ class JigsawSolverDialog(QDialog):
         self.log = None  # log widget removed; per-row status + global status log are sufficient
 
         buttons = QHBoxLayout()
-        self.define_grid_btn = QPushButton("  Define Grid")
+        self.define_grid_btn = QPushButton("  Izgarayı seç")
         self.define_grid_btn.setProperty("class", "Btn")
         self.define_grid_btn.setIcon(make_icon("grid", 12, C["text"]))
         self.define_grid_btn.setCursor(Qt.PointingHandCursor)
         self.define_grid_btn.clicked.connect(self._on_define_grid)
         buttons.addWidget(self.define_grid_btn)
-        self.set_confirm_btn = QPushButton("  Set Confirm Coords")
+        self.set_confirm_btn = QPushButton("  Onay konumunu seç")
         self.set_confirm_btn.setProperty("class", "Btn")
         self.set_confirm_btn.setIcon(make_icon("target", 12, C["text"]))
         self.set_confirm_btn.setCursor(Qt.PointingHandCursor)
         self.set_confirm_btn.clicked.connect(self._on_set_confirm)
         buttons.addWidget(self.set_confirm_btn)
         buttons.addStretch(1)
-        self.start_btn = QPushButton("  Start Jigsaw")
+        self.start_btn = QPushButton("  Yapbozu başlat")
         self.start_btn.setProperty("class", "BtnPrimary")
         self.start_btn.setIcon(make_icon("play", 12, "#1a1108"))
         self.start_btn.setCursor(Qt.PointingHandCursor)
         self.start_btn.clicked.connect(self._toggle)
         buttons.addWidget(self.start_btn)
-        close_btn = QPushButton("Close")
+        close_btn = QPushButton("Kapat")
         close_btn.setProperty("class", "Btn")
         close_btn.clicked.connect(self.close)
         buttons.addWidget(close_btn)
@@ -3029,12 +3027,12 @@ class JigsawSolverDialog(QDialog):
     @staticmethod
     def _initial_cache_message(state: str) -> str:
         if state == "ready":
-            return "Solver cache ready."
+            return "Yapboz verileri hazır."
         if state == "building":
-            return "Building solver cache. This may take 1–5 minutes — please wait..."
+            return "Yapboz verileri hazırlanıyor. Bu işlem 1–5 dakika sürebilir."
         if state == "failed":
-            return "Cache build failed previously. Reopen the dialog to retry."
-        return "Solver cache missing — preparing to build (1–5 minutes)."
+            return "Veriler hazırlanamadı. Yeniden denemek için pencereyi kapatıp açın."
+        return "Yapboz verileri eksik; hazırlık başlıyor (1–5 dakika)."
 
     def _on_cache_state(self, state: str, message: str) -> None:
         """Update status dot/label and gate the Start button on cache state."""
@@ -3082,29 +3080,28 @@ class JigsawSolverDialog(QDialog):
             state = self._cache_mgr.state()
             if state == "building":
                 QMessageBox.information(
-                    self, "Solver cache building",
-                    "The solver cache is still being generated. "
-                    "Please wait until the indicator turns green."
+                    self, "Yapboz verileri hazırlanıyor",
+                    "Yapboz verileri hazırlanıyor. Gösterge yeşile dönene kadar bekleyin."
                 )
             else:
                 QMessageBox.warning(
-                    self, "Solver cache not ready",
+                    self, "Yapboz verileri hazır değil",
                     "The solver cache is not available. "
                     f"Status: {state}. Close and reopen this dialog to retry the build."
                 )
             return
         if self.parent_window.bots:
-            QMessageBox.warning(self, "Fishbot running", "Stop Fishbot before starting the jigsaw solver.")
+            QMessageBox.warning(self, "Balık botu çalışıyor", "Yapbozu başlatmadan önce balık botunu durdurun.")
             return
         selected_names = self.parent_window.selected_window_names()
         if not selected_names:
-            QMessageBox.warning(self, "No window selected", "Select a game window first.")
+            QMessageBox.warning(self, "Pencere seçilmedi", "Önce bir oyun penceresi seçin.")
             return
         if not self.parent_window.config.get("confirm_button_pos"):
             QMessageBox.warning(
                 self,
-                "Confirm coordinate required",
-                "Use 'Set Confirm Coords' below or go to Inventory > Action Coordinates to set it first."
+                "Onay konumu gerekli",
+                "Önce Onay konumunu seç düğmesiyle veya Envanter sekmesinden onay konumunu belirleyin."
             )
             return
         bounds = self.parent_window.config.get("jigsaw_grid_bounds")
@@ -3116,20 +3113,20 @@ class JigsawSolverDialog(QDialog):
         if not valid_bounds:
             QMessageBox.warning(
                 self,
-                "Jigsaw grid required",
-                "Use 'Define Grid' to align the ghost grid over the empty puzzle grid before starting."
+                "Yapboz ızgarası gerekli",
+                "Izgarayı seç düğmesiyle boş yapboz alanını belirleyin."
             )
             return
         all_windows = {n: w for n, w in WindowManager.get_all_windows()}
         missing = [name for name in selected_names if name not in all_windows]
         if missing:
-            QMessageBox.warning(self, "Window not found", "Refresh/select the game windows on the Dashboard first.")
+            QMessageBox.warning(self, "Pencere bulunamadı", "İstemciler sekmesindeki pencere listesini yenileyip seçim yapın.")
             return
 
         try:
             from jigsaw_bot import JigsawBot
         except Exception as e:
-            QMessageBox.critical(self, "Jigsaw unavailable", f"Could not load jigsaw solver:\n{e}")
+            QMessageBox.critical(self, "Yapboz kullanılamıyor", f"Could not load jigsaw solver:\n{e}")
             return
 
         self._rebuild_rows()
@@ -3162,17 +3159,17 @@ class JigsawSolverDialog(QDialog):
             if row:
                 row["row"].setActive(True)
 
-        self.start_btn.setText("  Stop Jigsaw (F5)")
+        self.start_btn.setText("  Yapbozu durdur (F5)")
         self.start_btn.setIcon(make_icon("stop", 12, "#1a1108"))
         self.define_grid_btn.setEnabled(False)
         self.set_confirm_btn.setEnabled(False)
-        self.summary_label.setText(f"Running {len(self._bots)} jigsaw worker(s)")
+        self.summary_label.setText(f"Çalışan yapboz: {len(self._bots)}")
         self._append_log(f"Started jigsaw solver on {len(self._bots)} window(s)")
 
     def _stop(self) -> None:
         for bot in self._bots.values():
             bot.stop()
-        self._append_log("Stopping jigsaw solver workers...")
+        self._append_log("Yapboz işlemleri durduruluyor…")
 
     def _on_stopped(self, bot_id: int) -> None:
         row = self._rows.get(bot_id)
@@ -3187,26 +3184,26 @@ class JigsawSolverDialog(QDialog):
             except Exception:
                 pass
         if self._bots:
-            self.summary_label.setText(f"Running {len(self._bots)} jigsaw worker(s)")
+            self.summary_label.setText(f"Çalışan yapboz: {len(self._bots)}")
             return
-        self.start_btn.setText("  Start Jigsaw")
+        self.start_btn.setText("  Yapbozu başlat")
         self.start_btn.setIcon(make_icon("play", 12, "#1a1108"))
         self.define_grid_btn.setEnabled(True)
         self.set_confirm_btn.setEnabled(True)
-        self.summary_label.setText("Stopped")
+        self.summary_label.setText("Durdu")
 
     def _on_paused_changed(self, bot_id: int, paused: bool) -> None:
         if not self._bots:
             return
         any_paused = any(getattr(b, "paused", False) for b in self._bots.values())
         if any_paused:
-            self.start_btn.setText("  Resume Jigsaw (F5)")
+            self.start_btn.setText("  Yapboza devam et (F5)")
             self.start_btn.setIcon(make_icon("play", 12, "#1a1108"))
-            self.summary_label.setText(f"Paused — {len(self._bots)} jigsaw worker(s)")
+            self.summary_label.setText(f"Bekletilen yapboz: {len(self._bots)}")
         else:
-            self.start_btn.setText("  Stop Jigsaw")
+            self.start_btn.setText("  Yapbozu durdur")
             self.start_btn.setIcon(make_icon("stop", 12, "#1a1108"))
-            self.summary_label.setText(f"Running {len(self._bots)} jigsaw worker(s)")
+            self.summary_label.setText(f"Çalışan yapboz: {len(self._bots)}")
 
     def _append_status(self, bot_id: int, message: str) -> None:
         self._set_status(bot_id, message)
@@ -3228,33 +3225,33 @@ class JigsawSolverDialog(QDialog):
         if bounds and len(bounds) == 4:
             try:
                 x, y, w, h = [int(v) for v in bounds]
-                self.grid_info_label.setText(f"Grid: x={x} y={y} w={w} h={h}")
+                self.grid_info_label.setText(f"Izgara: x={x} y={y} w={w} h={h}")
                 self.grid_info_label.setStyleSheet(f"color: {C['green']}; {big}")
             except (TypeError, ValueError):
-                self.grid_info_label.setText("Grid: invalid")
+                self.grid_info_label.setText("Izgara geçersiz")
                 self.grid_info_label.setStyleSheet(f"color: {C['red']}; {big}")
         else:
-            self.grid_info_label.setText("Grid: not defined — use Define Grid first")
+            self.grid_info_label.setText("Izgara seçilmedi — önce Izgarayı seç düğmesine basın")
             self.grid_info_label.setStyleSheet(f"color: {C['orange']}; {big}")
         confirm = cfg.get("confirm_button_pos")
         if confirm:
-            self.confirm_info_label.setText(f"Confirm: ({confirm[0]},{confirm[1]})")
+            self.confirm_info_label.setText(f"Onay: ({confirm[0]},{confirm[1]})")
             self.confirm_info_label.setStyleSheet(f"color: {C['green']}; {big}")
         else:
-            self.confirm_info_label.setText("Confirm: not set — use Set Confirm Coords")
+            self.confirm_info_label.setText("Onay konumu seçilmedi — önce Onay konumunu seç düğmesine basın")
             self.confirm_info_label.setStyleSheet(f"color: {C['red']}; {big}")
 
     def _on_define_grid(self) -> None:
         if self.is_running():
-            QMessageBox.warning(self, "Jigsaw running",
-                                "Stop the jigsaw solver before redefining the grid.")
+            QMessageBox.warning(self, "Yapboz çalışıyor",
+                                "Izgarayı değiştirmeden önce yapbozu durdurun.")
             return
         self.parent_window._define_jigsaw_grid(self)
 
     def _on_set_confirm(self) -> None:
         if self.is_running():
-            QMessageBox.warning(self, "Jigsaw running",
-                                "Stop the jigsaw solver before capturing coordinates.")
+            QMessageBox.warning(self, "Yapboz çalışıyor",
+                                "Konum seçmeden önce yapbozu durdurun.")
             return
         self.parent_window._begin_capture("confirm")
 
@@ -3279,7 +3276,7 @@ class JigsawSolverDialog(QDialog):
         self._rows.clear()
 
         names = self.parent_window.selected_window_names()
-        self.summary_label.setText(f"{len(names)} selected window(s)")
+        self.summary_label.setText(f"{len(names)} pencere seçildi")
         for idx, name in enumerate(names):
             row_widget = JigsawWindowRow(idx, name)
             self._rows_layout.addWidget(row_widget)
@@ -3344,7 +3341,7 @@ class FishbotWindow(QMainWindow):
         self.setAttribute(Qt.WA_TranslucentBackground, False)
         self.setObjectName("AppWindow")
         self.setMinimumSize(980, 740)
-        self.resize(1080, 920)
+        self.resize(1080, 820)
 
         # Central widget
         central = QWidget()
@@ -3365,9 +3362,10 @@ class FishbotWindow(QMainWindow):
 
         self.tabs_bar = TabsBar([
             ("dashboard", "dashboard", "İstemciler"),
-            ("operations", "settings", "Oturum merkezi"),
+            ("operations", "settings", "Oturumlar"),
             ("inventory", "package",   "Envanter"),
             ("settings",  "settings",  "Ayarlar"),
+            ("telegram", "settings", "Telegram"),
         ])
         self.tabs_bar.changed.connect(self._set_tab)
         root.addWidget(self.tabs_bar)
@@ -3385,7 +3383,9 @@ class FishbotWindow(QMainWindow):
         self.inventory = InventoryTab()
         self.settings = SettingsTab()
         self.operations_tab = OperationsTab(self)
-        for w in (self.dashboard, self.inventory, self.settings, self.operations_tab):
+        from telegram_ui import TelegramTab
+        self.telegram_tab = TelegramTab(self)
+        for w in (self.dashboard, self.inventory, self.settings, self.operations_tab, self.telegram_tab):
             sw = QScrollArea()
             sw.setWidgetResizable(True)
             sw.setFrameShape(QFrame.NoFrame)
@@ -3577,13 +3577,13 @@ class FishbotWindow(QMainWindow):
         l.addWidget(self.jigsaw_launcher_btn)
         l.addStretch(1)
 
-        credit = QLabel("Mt2-Fishbot / boristei temel alınmıştır · DEV 0.2")
+        credit = QLabel("Mt2-Fishbot / boristei temel alınmıştır · DEV 0.3")
         credit.setStyleSheet(f"color: {C['text_dim']}; font-size: 11px;")
         l.addWidget(credit)
         return footer
 
     def _set_tab(self, tab_id: str) -> None:
-        idx = {"dashboard": 0, "inventory": 1, "settings": 2, "operations": 3}.get(tab_id, 0)
+        idx = {"dashboard": 0, "inventory": 1, "settings": 2, "operations": 3, "telegram": 4}.get(tab_id, 0)
         self.stack.setCurrentIndex(idx)
 
     def _set_jigsaw_launcher_enabled(self, enabled: bool) -> None:
@@ -3609,11 +3609,11 @@ class FishbotWindow(QMainWindow):
     def _define_jigsaw_grid(self, sender_dialog=None) -> None:
         selected = self.selected_window_names()
         if not selected:
-            QMessageBox.warning(self, "No window selected", "Select a game window first.")
+            QMessageBox.warning(self, "Pencere seçilmedi", "Önce bir oyun penceresi seçin.")
             return
         all_windows = {n: w for n, w in WindowManager.get_all_windows()}
         if selected[0] not in all_windows:
-            QMessageBox.warning(self, "Window not found", "Refresh the window list first.")
+            QMessageBox.warning(self, "Pencere bulunamadı", "Önce pencere listesini yenileyin.")
             return
         wm = WindowManager()
         wm.selected_window = all_windows[selected[0]]
@@ -3627,11 +3627,11 @@ class FishbotWindow(QMainWindow):
         try:
             left, top, w, h = wm.get_window_rect()
         except Exception as e:
-            QMessageBox.warning(self, "Window unavailable", str(e))
+            QMessageBox.warning(self, "Pencereye erişilemiyor", str(e))
             return
         if w <= 0 or h <= 0:
-            QMessageBox.warning(self, "Window unavailable",
-                                "Could not read game window position.")
+            QMessageBox.warning(self, "Pencereye erişilemiyor",
+                                "Oyun penceresinin konumu okunamadı.")
             return
         existing = self.config.get("jigsaw_grid_bounds")
         if existing and len(existing) == 4:
@@ -3811,7 +3811,7 @@ class FishbotWindow(QMainWindow):
         # Mark any selected slot as READY/EMPTY pill
         row = self.dashboard.window_rows[index]
         if name:
-            row.setStatus("idle", "READY")
+            row.setStatus("idle", "HAZIR")
             # Calculate bait capacity based on configured quantity per key and selected keys
             bait_quantity = self.config.get("bait_quantity", 200)
             selected_keys = self.settings.selectedBaitKeys()
@@ -3819,7 +3819,7 @@ class FishbotWindow(QMainWindow):
             self.window_stats[index]["bait"] = bait_cap
             row.setBait(bait_cap)
         else:
-            row.setStatus("idle", "EMPTY")
+            row.setStatus("idle", "BOŞ")
             self.window_stats[index]["bait"] = 0
             row.setBait("---")
         self.save_config()
@@ -3843,10 +3843,8 @@ class FishbotWindow(QMainWindow):
         selected = [r.selectedWindow() for r in rows if r.selectedWindow()]
         if not selected:
             QMessageBox.warning(
-                self, "No window selected",
-                "Please select at least one game window on the Dashboard tab "
-                "before setting coordinates. The position is captured relative "
-                "to that window."
+                self, "Pencere seçilmedi",
+                "Konum seçmeden önce İstemciler sekmesinde bir oyun penceresi seçin. Konum bu pencereye göre kaydedilir."
             )
             return
         if self._capture.is_active():
@@ -3917,7 +3915,7 @@ class FishbotWindow(QMainWindow):
 
     def _on_capture_failed(self, msg: str) -> None:
         self.inventory.setCapturing(None)
-        QMessageBox.warning(self, "Capture failed", msg)
+        QMessageBox.warning(self, "Konum seçilemedi", msg)
 
     # ---------------- Modals ----------------
     def open_fish_modal(self) -> None:
@@ -3931,13 +3929,13 @@ class FishbotWindow(QMainWindow):
 
     def open_jigsaw_solver(self) -> None:
         if self.bots:
-            QMessageBox.warning(self, "Fishbot running", "Stop Fishbot before opening the jigsaw solver.")
+            QMessageBox.warning(self, "Balık botu çalışıyor", "Yapbozu açmadan önce balık botunu durdurun.")
             return
         if not self.selected_window_names():
             QMessageBox.warning(
                 self,
-                "No window selected",
-                "Select at least one game window on the Dashboard before opening the jigsaw solver."
+                "Pencere seçilmedi",
+                "Yapbozu açmadan önce İstemciler sekmesinde bir oyun penceresi seçin."
             )
             return
         if self._jigsaw_dialog is None or not self._jigsaw_dialog.isVisible():
@@ -4018,39 +4016,39 @@ class FishbotWindow(QMainWindow):
             QMessageBox.information(self, "Oturum", "Önce mevcut oturumların durmasını bekle.")
             return
         if self._jigsaw_dialog is not None and self._jigsaw_dialog.isVisible():
-            QMessageBox.warning(self, "Jigsaw Solver open", "Close the Jigsaw Solver before starting Fishbot.")
+            QMessageBox.warning(self, "Yapboz açık", "Balık botunu başlatmadan önce yapboz penceresini kapatın.")
             return
         if FishingBot is None:
-            QMessageBox.critical(self, "Missing module",
+            QMessageBox.critical(self, "Eksik bileşen",
                                  "fishing_bot.py failed to import. "
                                  "Check that all dependencies are installed.")
             return
         rows = self.dashboard.window_rows
         selected = [(i, r.selectedWindow()) for i, r in enumerate(rows) if r.selectedWindow()]
         if not selected:
-            QMessageBox.warning(self, "No window selected",
-                                "Please select at least one game window on the Dashboard tab before starting.")
+            QMessageBox.warning(self, "Pencere seçilmedi",
+                                "Başlatmadan önce İstemciler sekmesinde bir oyun penceresi seçin.")
             return
         if len({name for _, name in selected}) != len(selected):
             QMessageBox.warning(self, "Aynı pencere", "Bir oyun penceresi yalnızca bir istemciye atanabilir.")
             return
         bait_keys = self.settings.selectedBaitKeys()
         if not bait_keys:
-            QMessageBox.warning(self, "No bait keys", "Select at least one bait key on the Settings tab.")
+            QMessageBox.warning(self, "Yem tuşu seçilmedi", "Ayarlar sekmesinde en az bir yem tuşu seçin.")
             return
         # Validate inventory coords
         missing = [p for p in range(1, 5) if not self.config.get(f"inv_page_{p}_pos")]
         if missing:
             QMessageBox.warning(
-                self, "Inventory pages not configured",
-                "Set inventory page coordinates 1-4 on the Inventory tab "
-                f"before starting (missing: {', '.join('Page ' + str(p) for p in missing)})."
+                self, "Envanter konumları eksik",
+                "Envanter sekmesinde 1–4. sayfa konumlarını seçin "
+                f"(eksik: {', '.join('Sayfa ' + str(p) for p in missing)})."
             )
             return
         for i, _ in selected:
             if self.window_stats[i]["bait"] <= 0:
-                QMessageBox.warning(self, "Out of bait",
-                                    f"W{i + 1} has 0 bait. Click 'Reset Bait' first.")
+                QMessageBox.warning(self, "Yem bitti",
+                                    f"W{i + 1} için yem kalmadı. Önce Yemi yeniledim düğmesine basın.")
                 return
         try:
             from profile_validation import validate_profile
@@ -4068,8 +4066,8 @@ class FishbotWindow(QMainWindow):
         if self.config.get("auto_fish_handling", False):
             if any(a == "drop" for a in self.config.get("fish_actions", {}).values()):
                 if not self.config.get("confirm_button_pos"):
-                    QMessageBox.warning(self, "Configure confirm coord",
-                                        "Set the Confirm coordinate on the Inventory tab.")
+                    QMessageBox.warning(self, "Onay konumunu ayarlayın",
+                                        "Envanter sekmesinde onay konumunu seçin.")
                     return
 
         # Fill any unset fish/item actions with "keep" so the bot has a safe default
@@ -4122,7 +4120,7 @@ class FishbotWindow(QMainWindow):
             self.window_stats[i]["games"] = 0
             self.window_stats[i]["bait"] = current_bait
             self._create_fish_debug_windows(i, bot)
-            rows[i].setStatus("active", "RUNNING")
+            rows[i].setStatus("active", "ÇALIŞIYOR")
             rows[i].setComboEnabled(False)
             t = threading.Thread(target=bot.start, daemon=True, name=f"FishClient-{i + 1}")
             self.bot_threads[i] = t
@@ -4131,7 +4129,7 @@ class FishbotWindow(QMainWindow):
         self.settings.setConfigEnabled(False)
         self.inventory.setDisabled(True)
         self._set_jigsaw_launcher_enabled(False)
-        self.header.setStatus("● RUNNING", "running")
+        self.header.setStatus("Çalışıyor", "running")
 
     def stop_all_bots(self) -> None:
         if self._jigsaw_dialog is not None and self._jigsaw_dialog.is_running():
@@ -4171,12 +4169,12 @@ class FishbotWindow(QMainWindow):
         
         # Update UI - use direct calls since we're already on main thread via QTimer.singleShot
         for i, bot in self.bots.items():
-            kind, txt = ("warn", "PAUSED") if new_paused else ("active", "RUNNING")
+            kind, txt = ("warn", "BEKLETİLDİ") if new_paused else ("active", "ÇALIŞIYOR")
             self.dashboard.window_rows[i].setStatus(kind, txt)
         
         self.dashboard.setPaused(new_paused)
         self.settings.setPaused(new_paused)
-        status_txt = "● PAUSED" if new_paused else "● RUNNING"
+        status_txt = "Bekletildi" if new_paused else "Çalışıyor"
         status_kind = "idle" if new_paused else "running"
         self.header.setStatus(status_txt, status_kind)
         
@@ -4249,7 +4247,7 @@ class FishbotWindow(QMainWindow):
         self._destroy_fish_debug_windows(bot_id)
         if bot_id < len(self.dashboard.window_rows):
             row = self.dashboard.window_rows[bot_id]
-            row.setStatus("error", "STOPPED")
+            row.setStatus("error", "DURDU")
             row.setComboEnabled(True)
         if not self.bots:
             self.dashboard.setRunning(False)
@@ -4257,7 +4255,7 @@ class FishbotWindow(QMainWindow):
             self.settings.setPaused(False)
             self.inventory.setDisabled(False)
             self._set_jigsaw_launcher_enabled(True)
-            self.header.setStatus("● IDLE", "idle")
+            self.header.setStatus("Hazır", "idle")
             self._maybe_play_no_bait_alert()
 
     def _create_fish_debug_windows(self, bot_id: int, bot) -> None:
@@ -4354,6 +4352,10 @@ class FishbotWindow(QMainWindow):
 
     # ---------------- Lifecycle ----------------
     def closeEvent(self, ev) -> None:
+        if self.telegram_tab.busy():
+            ev.ignore()
+            QTimer.singleShot(150, self.close)
+            return
         for bot in list(self.bots.values()):
             bot.stop()
         if any(t.is_alive() for t in self.bot_threads.values()):
@@ -4393,6 +4395,10 @@ class FishbotWindow(QMainWindow):
 
 def main() -> int:
     app = QApplication(sys.argv)
+    from PySide6.QtCore import QTranslator, QLibraryInfo
+    translator = QTranslator(app)
+    if translator.load("qtbase_tr", QLibraryInfo.path(QLibraryInfo.TranslationsPath)):
+        app.installTranslator(translator)
     # Ensure dark fallback for things outside the styled regions
     pal = app.palette()
     pal.setColor(QPalette.Window, QColor(C["bg_1"]))

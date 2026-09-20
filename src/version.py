@@ -1,7 +1,7 @@
 # Version configuration for MT2 Fishing Bot
 # Update this version number before each release
 
-VERSION = "1.2.0"
+VERSION = "0.3.0-dev"
 
 # Version history:
 # 1.0.0 - Initial release with classic fishing support

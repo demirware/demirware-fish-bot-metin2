@@ -1,3 +1,16 @@
+# DEV 0.3 doğrulama kaydı
+
+20 Eylül 2026 — Linux / Python 3.12.
+
+- 40 test geçti; 7 üst-proje yapboz testi masaüstü bağımlılıkları eksik olduğu için atlandı.
+- Telegram API istekleri taklit edilerek token/alıcı doğrulaması, zaman aşımı, hata gizleme ve özel sohbet seçimi test edildi.
+- Kimlik deposu taklit edilerek token’ın JSON dosyasına sızmaması ve kayıt hatasında düz metne dönülmemesi doğrulandı.
+- Qt çevrimdışı önizlemede 5 sekme, 8 istemci, gizli token alanı, hatalı giriş ve boş oturum kontrolleri doğrulandı.
+- Ana ekran ve Telegram ekranı görüntüleri incelendi.
+- Gerçek Telegram mesajı gönderilmedi; Windows kimlik deposu/EXE ve canlı oyun testi yapılmadı.
+
+---
+
 # DEV 0.2 doğrulama kaydı
 
 20 Eylül 2026 — Linux / Python 3.12.

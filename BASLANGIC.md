@@ -1,4 +1,4 @@
-# Demirware Fish Bot Metin2 — DEV 0.2
+# Demirware Fish Bot Metin2 — DEV 0.3
 
 Bu, boristei / hetzpvp Mt2-Fishbot (`981c4d3`) üzerinden geliştirilmiş bir
 Windows kaynak sürümüdür. Hazır, Gameforge üzerinde doğrulanmış bir EXE değildir.
@@ -91,9 +91,20 @@ ve oturum testlerinin oyun sınırları taklit edildi.
 Gerçek Gameforge istemcisi, sekiz canlı oyun penceresi, anti-cheat uyumluluğu,
 VM, Windows kurulumu/EXE ve uzun süreli av burada test edilmedi. K34'ten
 daha hızlı veya daha yüksek başarı oranına sahip olduğu ölçülmüş değildir.
-Telegram/telefon kontrolü bu sürüme dahil değildir. Gelişmiş ayar ve bazı
-üst projeden kalan diyaloglar İngilizcedir.
+Telegram bağlantı ayarları ve test mesajı bu sürüme dahildir; otomatik bildirim ve telefonla kontrol henüz yoktur. Ana ekranlar ve ayar diyalogları Türkçeleştirilmiştir; üst proje kaynaklı teknik hata/günlük metinleri İngilizce olabilir.
 
 Kodların görünür olduğu üst projede genel bir LICENSE bulunmadı. Orijinal
 yazar bilgileri korunmuştur; bu paket ticari dağıtım hakkı beyan etmez.
 Kaynak: https://github.com/hetzpvp/Mt2-Fishbot
+
+
+## Telegram kurulumu
+
+Güncellemeden sonra yeni `keyring` bağımlılığı için `Kur.cmd` dosyasını yeniden çalıştırın.
+Telegram sekmesindeki rehberi izleyerek doğrulanmış [BotFather](https://t.me/BotFather) üzerinden `/newbot` ile bot oluşturun. Kendi botunuzun sohbetine `/start` gönderin. Token’ı uygulamaya girip **Bağlantıyı kontrol et**, ardından **Sohbetleri bul** düğmesine basın. Listeden kendi sohbetinizi seçin. **Test mesajı gönder**, yalnızca seçtiğiniz sohbete sabit bir test metni gönderir.
+
+**Kaydet** token’ı Windows Kimlik Bilgileri Yöneticisi’ne, sohbet kimliğini `%LOCALAPPDATA%/DemirwareFishBotMetin2/telegram.json` dosyasına yazar. Token profil dosyasına veya günlük çıktısına yazılmaz. **Kaydı sil** yerel kaydı kaldırır; Telegram botunu silmez veya token’ı iptal etmez. Kayıt desteği Windows içindir; kayıt başarısız olsa da geçerli token bu oturumda kullanılabilir.
+
+Sohbet bulunamazsa botunuza yeni mesaj gönderin. Başka uygulamayla/webhook ile kullanılan botlarda otomatik sohbet bulma çalışmayabilir; ayrı bot kullanın veya bildiğiniz sohbet kimliğini girin.
+
+Kaynaklar: [Bot oluşturma](https://core.telegram.org/bots/features#botfather), [Telegram Bot API](https://core.telegram.org/bots/api).

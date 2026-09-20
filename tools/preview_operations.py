@@ -45,7 +45,15 @@ def main():
         app.processEvents()
         editor.grab().save(str(output / "workflow-editor.png"))
         assert window.operations_tab.table.rowCount() == 8
-        assert window.stack.count() == 4
+        assert window.stack.count() == 5
+        window.tabs_bar.setActive("telegram")
+        app.processEvents()
+        window.grab().save(str(output / "telegram.png"))
+        assert window.telegram_tab.token.echoMode().name == "Password"
+        window.telegram_tab.token.setText("invalid")
+        window.telegram_tab.request("test")
+        assert not window.telegram_tab.busy()
+        assert "geçersiz" in window.telegram_tab.status.text()
         assert window.operations_tab.table.cellWidget(0, 8).isEnabled() is False
         window.save_config()
         assert Path("bot_config.json").is_file()
