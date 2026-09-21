@@ -12,5 +12,5 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
-echo Sonuc: dist\DemirwareFishBotMetin2-Dev\DemirwareFishBotMetin2-Dev.exe
+echo Sonuc: dist\DemirwareFishBotMetin2.exe
 pause
