@@ -16,6 +16,7 @@ import json
 import os
 import sys
 import threading
+import traceback
 from copy import deepcopy
 from pathlib import Path
 from session_runtime import DEFAULT_OPERATIONS, EventJournal, atomic_json
@@ -81,9 +82,11 @@ try:
 except Exception:  # pragma: no cover - import-time failures are surfaced at start
     FishingBot = None
 
+_PYNPUT_IMPORT_ERROR = ""
 try:
     from pynput import keyboard as pyn_keyboard, mouse as pyn_mouse  # noqa: E402
 except Exception:
+    _PYNPUT_IMPORT_ERROR = traceback.format_exc()
     pyn_keyboard = None
     pyn_mouse = None
 
@@ -1218,7 +1221,12 @@ class PositionCaptureController(QObject):
 
     def start(self, mode: str) -> bool:
         if pyn_mouse is None:
-            self.signals.failed.emit("pynput not installed")
+            self.signals.failed.emit(
+                "Fare dinleyicisi yüklenemedi. Bu mesaj paketin eksik olduğu anlamına gelmez.\n\n"
+                f"Python: {sys.executable}\n"
+                f"Uygulama: {os.path.abspath(__file__)}\n\n"
+                f"{_PYNPUT_IMPORT_ERROR or 'Yükleme ayrıntısı bulunamadı.'}"
+            )
             return False
         self.cancel()
         self._mode = mode
