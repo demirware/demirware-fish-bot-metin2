@@ -89,7 +89,7 @@ class RuntimeTests(unittest.TestCase):
             atomic_json(path, {"name": "İnel"})
             with self.assertRaises(ValueError):
                 atomic_json(path, {"broken": float("nan")})
-            self.assertEqual(json.loads(path.read_text()), {"name": "İnel"})
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), {"name": "İnel"})
             self.assertEqual(len(list(Path(temp).iterdir())), 1)
 
     def test_journal_rotates_and_reports_write_failure(self):
@@ -99,7 +99,7 @@ class RuntimeTests(unittest.TestCase):
             journal.append("one")
             journal.append("two")
             self.assertTrue(path.with_suffix(".previous.jsonl").exists())
-            self.assertEqual(json.loads(path.read_text())["message"], "two")
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8"))["message"], "two")
             bad = EventJournal(path / "not_a_directory")
             bad.append("three")
             self.assertIsNotNone(bad.error)
