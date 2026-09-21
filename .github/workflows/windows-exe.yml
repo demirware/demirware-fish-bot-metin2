@@ -1,0 +1,51 @@
+name: Windows EXE
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['src/**', 'assets/**', 'packaging/**', 'requirements-windows.txt', '.github/workflows/windows-exe.yml']
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x64
+      - name: Install dependencies
+        run: python -m pip install -r requirements-windows.txt
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Build standalone executable
+        run: python -m PyInstaller --clean --noconfirm packaging/demirware-fish-bot-metin2.spec
+      - name: Test packaged application
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath dist/DemirwareFishBotMetin2.exe -ArgumentList '--self-test' -PassThru
+          if (-not $p.WaitForExit(120000)) { $p.Kill(); throw 'EXE startup timed out' }
+          if ($p.ExitCode -ne 0) { throw "EXE startup failed: $($p.ExitCode)" }
+          Get-Content "$env:LOCALAPPDATA/DemirwareFishBotMetin2/startup.log"
+      - name: Upload executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: DemirwareFishBotMetin2-Windows
+          path: dist/DemirwareFishBotMetin2.exe
+          if-no-files-found: error
+      - name: Publish tested development build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $tag = "dev-build-${{ github.run_number }}-${{ github.run_attempt }}"
+          gh release create $tag dist/DemirwareFishBotMetin2.exe --target $env:GITHUB_SHA --prerelease --title "Windows geliştirme paketi $tag" --notes "Python kurulumu gerektirmeyen tek EXE. Otomatik test ve açılış kontrolünden geçmiştir. Gerçek oyun kalibrasyonu ve çoklu istemci testi ayrıca gereklidir."
+      - name: Upload startup diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: startup-diagnostic
+          path: ~/AppData/Local/DemirwareFishBotMetin2/startup.log
+          if-no-files-found: ignore
