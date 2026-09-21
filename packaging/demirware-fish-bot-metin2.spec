@@ -8,7 +8,7 @@ a = Analysis(
     hiddenimports=['pynput.keyboard._win32', 'pynput.mouse._win32',
                    'numba', 'llvmlite', 'jigsaw_solver.deterministic',
                    'PySide6.QtSvg', 'keyring.backends.Windows'],
-    hookspath=[], hooksconfig={}, runtime_hooks=[], excludes=[], noarchive=False,
+    hookspath=[os.path.join(root, 'packaging', 'hooks')], hooksconfig={}, runtime_hooks=[], excludes=[], noarchive=False,
 )
 pyz = PYZ(a.pure)
 exe = EXE(pyz, a.scripts, a.binaries, a.datas,
