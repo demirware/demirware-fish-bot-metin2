@@ -20,7 +20,6 @@ import traceback
 from copy import deepcopy
 from pathlib import Path
 from session_runtime import DEFAULT_OPERATIONS, EventJournal, atomic_json
-from operations_ui import OperationsTab
 from typing import Dict, List, Optional, Tuple
 
 # High-DPI awareness must be set before any Qt window is created.
@@ -30,6 +29,18 @@ except Exception:
     pass
 if sys.platform == "win32":
     os.environ.setdefault("QT_QPA_PLATFORM", "windows:dpiawareness=0")
+
+# Load pynput before Qt installs its Shiboken import hook. Loading six.moves
+# through that hook can fail on Windows with _SixMetaPathImporter._path.
+_PYNPUT_IMPORT_ERROR = ""
+try:
+    from pynput import keyboard as pyn_keyboard, mouse as pyn_mouse  # noqa: E402
+except Exception:
+    _PYNPUT_IMPORT_ERROR = traceback.format_exc()
+    pyn_keyboard = None
+    pyn_mouse = None
+
+from operations_ui import OperationsTab
 
 from PySide6.QtCore import (
     QByteArray, QEvent, QObject, QPoint, QSize, Qt, QTimer, Signal,
@@ -82,13 +93,6 @@ try:
 except Exception:  # pragma: no cover - import-time failures are surfaced at start
     FishingBot = None
 
-_PYNPUT_IMPORT_ERROR = ""
-try:
-    from pynput import keyboard as pyn_keyboard, mouse as pyn_mouse  # noqa: E402
-except Exception:
-    _PYNPUT_IMPORT_ERROR = traceback.format_exc()
-    pyn_keyboard = None
-    pyn_mouse = None
 
 try:
     from version import VERSION as APP_VERSION  # noqa: E402
