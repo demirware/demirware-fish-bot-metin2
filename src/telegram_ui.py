@@ -34,6 +34,9 @@ class TelegramTab(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.worker = None
+        self.listener = None
+        self.remote_handler = None
+        self.remote_enabled = False
         base = Path(os.environ.get("LOCALAPPDATA", str(Path.home() / ".config")))
         self.settings_path = base / "DemirwareFishBotMetin2" / "telegram.json"
         layout = QVBoxLayout(self)
@@ -80,8 +83,17 @@ class TelegramTab(QWidget):
         self.status = QLabel("Henüz bağlantı kontrol edilmedi.")
         self.status.setWordWrap(True)
         layout.addWidget(self.status)
+        self.remote_button = QPushButton("Uzaktan kontrolü aç")
+        self.remote_button.setMinimumHeight(36)
+        self.remote_button.clicked.connect(self.toggle_remote)
+        layout.addWidget(self.remote_button)
+        commands = QLabel("/start: başlat · /stop: durdur · /karakterat: karakter ekranı · "
+                          "/kanal: kanal değiştir · /durum: istatistik · /pm: yanıt altyapısı (görsel bekleniyor)")
+        commands.setWordWrap(True)
+        layout.addWidget(commands)
         note = QLabel("Token yalnızca Windows Kimlik Bilgileri Yöneticisi’nde saklanır; profillere eklenmez. "
-                      "Test mesajı seçtiğiniz sohbete gönderilir. Bu sürümde otomatik bildirim ve uzaktan kontrol yoktur. "
+                      "Uzaktan kontrolü açtığınızda yalnızca seçili özel sohbetin sahibi komut verebilir. "
+                      "Bilgisayar ve uygulama açık kalmalıdır. /start kullanmadan önce oyun ayarlarını tamamlayın. "
                       "Sohbet bulunamazsa botunuza yeni bir mesaj gönderip tekrar deneyin.")
         note.setWordWrap(True)
         layout.addWidget(note)
@@ -128,7 +140,59 @@ class TelegramTab(QWidget):
             self.status.setText("Kayıt tamamen silinemedi. Windows kimlik deposunu kontrol edin.")
 
     def busy(self):
-        return self.worker is not None and self.worker.isRunning()
+        return ((self.worker is not None and self.worker.isRunning()) or
+                (self.listener is not None and self.listener.isRunning()))
+
+    def send_remote(self, text):
+        if self.remote_enabled and self.listener:
+            self.listener.send(text)
+
+    def dispatch_remote(self, command, argument):
+        if self.remote_enabled and self.listener and not self.listener.halt.is_set() and self.remote_handler:
+            self.remote_handler(command, argument)
+
+    def stop_remote(self):
+        self.remote_enabled = False
+        if self.listener:
+            self.listener.stop()
+        self.remote_button.setText("Uzaktan kontrol kapanıyor…")
+
+    def remote_finished(self):
+        listener, self.listener = self.listener, None
+        self.remote_enabled = False
+        if listener:
+            listener.deleteLater()
+        self.remote_button.setText("Uzaktan kontrolü aç")
+        for widget in [*self.buttons, self.token, self.chat]:
+            widget.setEnabled(True)
+
+    def toggle_remote(self):
+        if self.listener:
+            self.stop_remote()
+            return
+        if self.worker:
+            self.status.setText("Önce bağlantı işleminin bitmesini bekleyin.")
+            return
+        try:
+            token, chat = validate_token(self.token.text()), validate_chat(self.chat.text())
+            if int(chat) <= 0:
+                raise TelegramError("Uzaktan kontrol için kendi özel sohbetinizi seçin; grup/kanal kullanılamaz.")
+            if self.remote_handler is None:
+                raise TelegramError("Oturum denetleyicisi hazır değil.")
+        except TelegramError as exc:
+            self.status.setText(str(exc))
+            return
+        from telegram_remote import TelegramListener
+        self.listener = TelegramListener(token, chat, self)
+        self.listener.command.connect(self.dispatch_remote)
+        self.listener.status.connect(self.status.setText)
+        self.listener.finished.connect(self.remote_finished)
+        self.remote_enabled = True
+        for widget in [*self.buttons, self.token, self.chat]:
+            widget.setEnabled(False)
+        self.remote_button.setText("Uzaktan kontrolü kapat")
+        self.status.setText("Bağlanıyor; eski komutlar atlanıyor…")
+        self.listener.start()
 
     def request(self, action):
         if self.busy():

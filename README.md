@@ -1,6 +1,6 @@
 # Demirware Fish Bot Metin2
 
-DEV 0.3 — geliştirme sürümü. Windows/Gameforge üzerinde canlı test ve EXE derlemesi henüz tamamlanmadı. Sekiz istemci desteği canlı ortamda doğrulanmış değildir; tespit edilemezlik veya ban güvenliği garantisi yoktur.
+DEV 0.4 — geliştirme sürümü. Windows/Gameforge üzerinde canlı test ve EXE derlemesi henüz tamamlanmadı. Sekiz istemci desteği canlı ortamda doğrulanmış değildir; tespit edilemezlik veya ban güvenliği garantisi yoktur.
 
 - [Kurulum ve kullanım](BASLANGIC.md)
 - [İlerleme ve yol haritası](ROADMAP.md)
@@ -9,9 +9,15 @@ DEV 0.3 — geliştirme sürümü. Windows/Gameforge üzerinde canlı test ve EX
 
 Temel kaynak: [hetzpvp/Mt2-Fishbot](https://github.com/hetzpvp/Mt2-Fishbot), başlangıç commit'i `981c4d3`; özgün yazar kredisi boristei. Yeniden adlandırma, üst projenin veya üçüncü tarafların haklarını değiştirmez. Dağıtım öncesinde kaynak lisansı netleştirilmelidir.
 
-## DEV 0.3 yenilikleri
+## DEV 0.4 yenilikleri
 
-Sade Türkçe ana arayüz; Telegram bot oluşturma rehberi, bağlantı kontrolü, sohbet seçimi, test mesajı ve Windows kimlik deposunda token kaydı. Otomatik Telegram bildirimi/uzaktan kontrol bu sürümde yoktur. Güncellemeden sonra `Kur.cmd` dosyasını yeniden çalıştırın.
+Telegram özel sohbetinden `/start`, `/stop`, `/karakterat`, `/kanal`, `/durum` komutları; Ayarlar sekmesinde süreli karakter/kanal geçişi ve isteğe bağlı kanal sonrası devam/tekrar. Geçiş için ekran şablonları kalibre edilmelidir; başarı yalnızca son görsel doğrulanınca bildirilir. `/pm` ekran örnekleri gelene kadar işlem yapmaz. [Komutlar ve kurulum](docs/TELEGRAM_KOMUTLARI.md).
+
+![Süreli işlemler](docs/previews/settings-timer.png)
+
+## Arayüz ve bağlantı ayarları
+
+Sade Türkçe ana arayüz; Telegram bot oluşturma rehberi, bağlantı kontrolü, sohbet seçimi, test mesajı ve Windows kimlik deposunda token kaydı. Uzaktan kontrol Telegram sekmesindeki düğmeyle açılır. Güncellemeden sonra `Kur.cmd` dosyasını yeniden çalıştırın.
 
 ![Telegram ayarları](docs/previews/telegram.png)
 

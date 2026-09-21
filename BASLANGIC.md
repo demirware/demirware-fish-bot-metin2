@@ -1,4 +1,4 @@
-# Demirware Fish Bot Metin2 — DEV 0.3
+# Demirware Fish Bot Metin2 — DEV 0.4
 
 Bu, boristei / hetzpvp Mt2-Fishbot (`981c4d3`) üzerinden geliştirilmiş bir
 Windows kaynak sürümüdür. Hazır, Gameforge üzerinde doğrulanmış bir EXE değildir.
@@ -91,7 +91,7 @@ ve oturum testlerinin oyun sınırları taklit edildi.
 Gerçek Gameforge istemcisi, sekiz canlı oyun penceresi, anti-cheat uyumluluğu,
 VM, Windows kurulumu/EXE ve uzun süreli av burada test edilmedi. K34'ten
 daha hızlı veya daha yüksek başarı oranına sahip olduğu ölçülmüş değildir.
-Telegram bağlantı ayarları ve test mesajı bu sürüme dahildir; otomatik bildirim ve telefonla kontrol henüz yoktur. Ana ekranlar ve ayar diyalogları Türkçeleştirilmiştir; üst proje kaynaklı teknik hata/günlük metinleri İngilizce olabilir.
+Telegram bağlantı ayarları ve test mesajı bu sürüme dahildir; uzaktan komutlar ve doğrulanan geçiş bildirimleri eklenmiştir. Ana ekranlar ve ayar diyalogları Türkçeleştirilmiştir; üst proje kaynaklı teknik hata/günlük metinleri İngilizce olabilir.
 
 Kodların görünür olduğu üst projede genel bir LICENSE bulunmadı. Orijinal
 yazar bilgileri korunmuştur; bu paket ticari dağıtım hakkı beyan etmez.
@@ -108,3 +108,6 @@ Telegram sekmesindeki rehberi izleyerek doğrulanmış [BotFather](https://t.me/
 Sohbet bulunamazsa botunuza yeni mesaj gönderin. Başka uygulamayla/webhook ile kullanılan botlarda otomatik sohbet bulma çalışmayabilir; ayrı bot kullanın veya bildiğiniz sohbet kimliğini girin.
 
 Kaynaklar: [Bot oluşturma](https://core.telegram.org/bots/features#botfather), [Telegram Bot API](https://core.telegram.org/bots/api).
+
+
+DEV 0.4 komutları ve zamanlayıcı: [Telegram kullanım rehberi](docs/TELEGRAM_KOMUTLARI.md).

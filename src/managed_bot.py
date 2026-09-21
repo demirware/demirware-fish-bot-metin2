@@ -44,6 +44,9 @@ class ManagedFishingBot(FishingBot):
         self._jigsaw_deadline = None
         self._last_jigsaw_round = -1
         self._recovery_count = 0
+        self.confirmed_fish = 0
+        self.fish_measurement_ok = bool(self.config.get("catch_success_template"))
+        self._catch_armed = False
         self._port = DesktopWorkflowPort(self, self._halt.is_set)
 
     def _status(self, message, state=None, error=False):
@@ -133,6 +136,14 @@ class ManagedFishingBot(FishingBot):
         if self._halt.is_set() or not self.running or self.paused:
             raise WorkflowError("Oturum durduruldu veya bekletildi")
         self.metrics.update(state="Olta atılıyor")
+        template = self.config.get("catch_success_template")
+        self._catch_armed = False
+        if template:
+            try:
+                # Require the previous success indicator to disappear before counting again.
+                self._catch_armed = self._port.matcher.locate(self.capture_full_window(), template) is None
+            except Exception:
+                self.fish_measurement_ok = False
         # Revalidate immediately before the existing input sequence.
         with input_lock:
             self.window_manager.activate_window()
@@ -164,6 +175,15 @@ class ManagedFishingBot(FishingBot):
         self.metrics.update(progress=True)
 
     def handle_caught_item(self):
+        template = self.config.get("catch_success_template")
+        if template and self._catch_armed:
+            try:
+                if self._port.matcher.locate(self.capture_full_window(), template) is not None:
+                    self.confirmed_fish += 1
+            except Exception:
+                self.fish_measurement_ok = False
+            finally:
+                self._catch_armed = False
         super().handle_caught_item()
         self.metrics.update(progress=True)
         interval = self.operations.get("jigsaw_every_rounds", 0)

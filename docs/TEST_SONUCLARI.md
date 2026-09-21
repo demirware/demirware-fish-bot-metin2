@@ -1,3 +1,20 @@
+# DEV 0.4 doğrulama kaydı
+
+20 Eylül 2026 — Linux / Python 3.12.
+
+- 58 test geçti, 7 üst-proje yapboz testi masaüstü bağımlılıkları eksik olduğu için atlandı.
+- Komut yetkisi: başka kullanıcı/grup, iletilmiş/düzenlenmiş mesaj, eski mesaj ve başka bota hitap eden komut reddi test edildi.
+- Açılış güncellemeleri atlandı; aynı update_id ikinci kez çalıştırılmadı (taklit Telegram API).
+- Sayaç tek tetikleme, iptal, geçersiz süre; işçi bitişini bekleme ve durma zaman aşımı doğrulandı.
+- Geçiş iptalinden sonra yeniden başlatma yapılmaması ve başarısız görselde başarı bildirimi çıkmaması test edildi.
+- Başarı görseli aynı turda en fazla bir kez sayılır; eksik şablonda sayım eksik olarak işaretlenir.
+- Qt önizlemede Telegram komut paneli ve Ayarlar zamanlayıcısı açıldı, ekran görüntüleri incelendi.
+- Python derleme ve git boşluk denetimi geçti.
+
+Gerçek Telegram mesajı gönderilmedi. Windows kimlik deposu, Gameforge karakter/kanal menüsü, gerçek balık sayımı ve çoklu istemci testi yapılmadı. `/pm` oyun içi gönderimi ekran örneklerini bekliyor.
+
+---
+
 # DEV 0.3 doğrulama kaydı
 
 20 Eylül 2026 — Linux / Python 3.12.

@@ -24,3 +24,13 @@ Her hata/özellik için ayrı GitHub issue açılır. Hata kaydı; sürüm, Wind
 ekran çözünürlüğü/DPI, istemci sayısı, tekrar adımları ve kişisel verileri
 temizlenmiş günlük içerir. Doğrulama kanıtı olmadan canlı test işleri kapatılmaz.
 Her teslimde CHANGELOG.md güncellenir; tamamlanmış yayınlar ayrıca etiketlenir.
+
+
+## DEV 0.4
+
+- [x] Telegram özel sohbet yetkilendirmesi ve yeni komut dinleyicisi.
+- [x] Başlat/durdur, durum raporu ve doğrulamalı karakter/kanal geçiş denetleyicisi.
+- [x] Süreli geçiş, kanal sonrası devam ve isteğe bağlı tekrar.
+- [x] İsteğe bağlı başarı görseliyle balık sayacı.
+- [ ] Gameforge karakter/kanal ekran görsellerini kalibre edip canlı doğrula.
+- [ ] PM ekran örnekleriyle OCR, alıcı eşleme ve yanıt gönderimini tamamla.

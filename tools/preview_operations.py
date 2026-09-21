@@ -54,6 +54,13 @@ def main():
         window.telegram_tab.request("test")
         assert not window.telegram_tab.busy()
         assert "geçersiz" in window.telegram_tab.status.text()
+        window.tabs_bar.setActive("settings")
+        app.processEvents()
+        window.grab().save(str(output / "settings-timer.png"))
+        window.session_control.panel.minutes.setText("nan")
+        window.session_control.arm()
+        assert window.session_control.countdown.remaining() is None
+        window.session_control.command("/durum", "")
         assert window.operations_tab.table.cellWidget(0, 8).isEnabled() is False
         window.save_config()
         assert Path("bot_config.json").is_file()

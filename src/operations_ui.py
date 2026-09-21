@@ -18,7 +18,9 @@ from visual_workflow import validate_workflow
 
 RECIPE_NAMES = {"restock": "Yem yenileme", "cook": "Envanter / pişirme",
                 "reconnect": "Yeniden giriş", "jigsaw_open": "Yapbozu aç",
-                "jigsaw_close": "Yapbozdan balığa dön"}
+                "jigsaw_close": "Yapbozdan balığa dön",
+                "character_select": "ESC → Karakter değiştir → Karakter ekranı",
+                "channel_change": "Kanal değiştir → Hedef kanal doğrulama"}
 ACTIONS = {"expect": "Görseli doğrula", "click": "Sol tıkla", "right_click": "Sağ tıkla",
            "key": "Tuşa bas", "drag": "Görsele sürükle"}
 
@@ -156,6 +158,9 @@ class WorkflowEditor(QDialog):
             field.setText(path)
 
     def capture(self):
+        if hasattr(self.owner, "session_control") and self.owner.session_control.busy():
+            QMessageBox.information(self, "Geçiş sürüyor", "Görsel yakalamadan önce geçişi durdurun.")
+            return
         if self.owner.bots:
             QMessageBox.information(self, "Görsel yakalama", "Önce çalışan oturumları durdur.")
             return

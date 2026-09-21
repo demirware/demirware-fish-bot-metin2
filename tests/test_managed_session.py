@@ -106,6 +106,26 @@ class ManagedSessionTests(unittest.TestCase):
         self.assertEqual(bot.total_games, 0)
         bot.on_bot_stop.assert_called_once()
 
+    def test_success_indicator_counts_once_per_armed_round(self):
+        bot = self.Bot({"catch_success_template": "success.png"})
+        bot._catch_armed = True
+        bot.capture_full_window = Mock()
+        bot._port.matcher.locate = Mock(return_value=(20, 20))
+        with patch.object(SimulatedFishingBot, "handle_caught_item", create=True):
+            bot.handle_caught_item()
+            bot.handle_caught_item()
+        self.assertEqual(bot.confirmed_fish, 1)
+
+    def test_broken_success_template_marks_count_incomplete(self):
+        bot = self.Bot({"catch_success_template": "missing.png"})
+        bot._catch_armed = True
+        bot.capture_full_window = Mock()
+        bot._port.matcher.locate = Mock(side_effect=OSError("missing"))
+        with patch.object(SimulatedFishingBot, "handle_caught_item", create=True):
+            bot.handle_caught_item()
+        self.assertFalse(bot.fish_measurement_ok)
+        self.assertEqual(bot.confirmed_fish, 0)
+
     def test_guard_suppresses_click_but_allows_release_on_stop(self):
         bot = self.Bot(self.config())
         underlying = bot.human.wrapped

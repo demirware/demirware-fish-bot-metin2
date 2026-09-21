@@ -48,7 +48,7 @@ def validate_profile(profile):
     if not isinstance(recipes, dict):
         raise ValueError("Akışlar bir nesne olmalı")
     for key, recipe in recipes.items():
-        if key not in {"restock", "cook", "reconnect", "jigsaw_open", "jigsaw_close"} or not isinstance(recipe, dict):
+        if key not in {"restock", "cook", "reconnect", "jigsaw_open", "jigsaw_close", "character_select", "channel_change"} or not isinstance(recipe, dict):
             raise ValueError("Akış adı veya içeriği geçersiz")
         if not isinstance(recipe.get("enabled", False), bool):
             raise ValueError("Akış etkinliği doğru/yanlış olmalı")

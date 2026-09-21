@@ -1032,7 +1032,7 @@ class Header(QFrame):
         title_row.setAlignment(Qt.AlignCenter)
         title = QLabel("Demirware Fish Bot Metin2")
         title.setObjectName("HeaderTitle")
-        ver = QLabel("DEV 0.3")
+        ver = QLabel("DEV 0.4")
         ver.setObjectName("HeaderVersion")
         title_row.addWidget(title)
         title_row.addWidget(ver)
@@ -3076,6 +3076,9 @@ class JigsawSolverDialog(QDialog):
         return any(getattr(bot, "running", False) for bot in self._bots.values())
 
     def _start(self) -> None:
+        if hasattr(self.parent_window, "session_control") and self.parent_window.session_control.busy():
+            QMessageBox.information(self, "Geçiş sürüyor", "Karakter/kanal geçişinin bitmesini bekleyin.")
+            return
         if not self._cache_mgr.is_ready():
             state = self._cache_mgr.state()
             if state == "building":
@@ -3471,6 +3474,10 @@ class FishbotWindow(QMainWindow):
         self._poll.timeout.connect(self._poll_bot_stats)
         self._poll.start()
         self._init_debug_ui()
+        from session_control import SessionControl
+        self.session_control = SessionControl(self)
+        self.settings.layout().insertWidget(0, self.session_control.panel)
+        self.telegram_tab.remote_handler = self.session_control.command
 
     def _refresh_input_backend_pill(self) -> None:
         """Probe the input backend and update the header pill. Called once at
@@ -3577,7 +3584,7 @@ class FishbotWindow(QMainWindow):
         l.addWidget(self.jigsaw_launcher_btn)
         l.addStretch(1)
 
-        credit = QLabel("Mt2-Fishbot / boristei temel alınmıştır · DEV 0.3")
+        credit = QLabel("Mt2-Fishbot / boristei temel alınmıştır · DEV 0.4")
         credit.setStyleSheet(f"color: {C['text_dim']}; font-size: 11px;")
         l.addWidget(credit)
         return footer
@@ -3838,6 +3845,9 @@ class FishbotWindow(QMainWindow):
 
     # ---------------- Coord capture ----------------
     def _begin_capture(self, key: str) -> None:
+        if hasattr(self, "session_control") and self.session_control.busy():
+            QMessageBox.information(self, "Geçiş sürüyor", "Konum seçmeden önce geçişin bitmesini bekleyin.")
+            return
         # Need at least one selected window to capture coords relative to
         rows = self.dashboard.window_rows
         selected = [r.selectedWindow() for r in rows if r.selectedWindow()]
@@ -3928,6 +3938,9 @@ class FishbotWindow(QMainWindow):
         self.save_config()
 
     def open_jigsaw_solver(self) -> None:
+        if hasattr(self, "session_control") and self.session_control.busy():
+            QMessageBox.information(self, "Geçiş sürüyor", "Yapbozu açmadan önce geçişin bitmesini bekleyin.")
+            return
         if self.bots:
             QMessageBox.warning(self, "Balık botu çalışıyor", "Yapbozu açmadan önce balık botunu durdurun.")
             return
@@ -4011,35 +4024,50 @@ class FishbotWindow(QMainWindow):
         QApplication.clipboard().setText(self.BTC_ADDRESS)
 
     # ---------------- Bot lifecycle ----------------
-    def start_all_bots(self) -> None:
+    def _start_notice(self, _owner, title, message):
+        if getattr(self, "_remote_start", False):
+            raise ValueError(f"{title}: {message}")
+        QMessageBox.warning(self, title, message)
+
+    def start_all_bots(self, remote=False) -> None:
+        self._remote_start = bool(remote)
+        try:
+            return self._start_all_bots_impl()
+        finally:
+            self._remote_start = False
+
+    def _start_all_bots_impl(self) -> None:
+        if hasattr(self, "session_control") and self.session_control.busy():
+            self._start_notice(self, "Geçiş sürüyor", "Geçiş bitmeden balık botu başlatılamaz.")
+            return
         if self.bots or any(t.is_alive() for t in self.bot_threads.values()):
-            QMessageBox.information(self, "Oturum", "Önce mevcut oturumların durmasını bekle.")
+            self._start_notice(self, "Oturum", "Önce mevcut oturumların durmasını bekle.")
             return
         if self._jigsaw_dialog is not None and self._jigsaw_dialog.isVisible():
-            QMessageBox.warning(self, "Yapboz açık", "Balık botunu başlatmadan önce yapboz penceresini kapatın.")
+            self._start_notice(self, "Yapboz açık", "Balık botunu başlatmadan önce yapboz penceresini kapatın.")
             return
         if FishingBot is None:
-            QMessageBox.critical(self, "Eksik bileşen",
+            self._start_notice(self, "Eksik bileşen",
                                  "fishing_bot.py failed to import. "
                                  "Check that all dependencies are installed.")
             return
         rows = self.dashboard.window_rows
         selected = [(i, r.selectedWindow()) for i, r in enumerate(rows) if r.selectedWindow()]
         if not selected:
-            QMessageBox.warning(self, "Pencere seçilmedi",
+            self._start_notice(self, "Pencere seçilmedi",
                                 "Başlatmadan önce İstemciler sekmesinde bir oyun penceresi seçin.")
             return
         if len({name for _, name in selected}) != len(selected):
-            QMessageBox.warning(self, "Aynı pencere", "Bir oyun penceresi yalnızca bir istemciye atanabilir.")
+            self._start_notice(self, "Aynı pencere", "Bir oyun penceresi yalnızca bir istemciye atanabilir.")
             return
         bait_keys = self.settings.selectedBaitKeys()
         if not bait_keys:
-            QMessageBox.warning(self, "Yem tuşu seçilmedi", "Ayarlar sekmesinde en az bir yem tuşu seçin.")
+            self._start_notice(self, "Yem tuşu seçilmedi", "Ayarlar sekmesinde en az bir yem tuşu seçin.")
             return
         # Validate inventory coords
         missing = [p for p in range(1, 5) if not self.config.get(f"inv_page_{p}_pos")]
         if missing:
-            QMessageBox.warning(
+            self._start_notice(
                 self, "Envanter konumları eksik",
                 "Envanter sekmesinde 1–4. sayfa konumlarını seçin "
                 f"(eksik: {', '.join('Sayfa ' + str(p) for p in missing)})."
@@ -4047,26 +4075,26 @@ class FishbotWindow(QMainWindow):
             return
         for i, _ in selected:
             if self.window_stats[i]["bait"] <= 0:
-                QMessageBox.warning(self, "Yem bitti",
+                self._start_notice(self, "Yem bitti",
                                     f"W{i + 1} için yem kalmadı. Önce Yemi yeniledim düğmesine basın.")
                 return
         try:
             from profile_validation import validate_profile
             validate_profile(self.config)
         except ValueError as exc:
-            QMessageBox.warning(self, "Oturum ayarları", str(exc))
+            self._start_notice(self, "Oturum ayarları", str(exc))
             return
         if self.config.get("operations", {}).get("jigsaw_every_rounds", 0):
-            manager = self.solver_cache_manager()
+            manager = self.solver_cache_manager
             if not manager.is_ready():
                 manager.ensure_build()
-                QMessageBox.information(self, "Yapboz hazırlanıyor", "Çözüm tablosu hazırlanıyor. Yapboz ekranından durumu takip edip tamamlanınca başlat.")
+                self._start_notice(self, "Yapboz hazırlanıyor", "Çözüm tablosu hazırlanıyor. Yapboz ekranından durumu takip edip tamamlanınca başlat.")
                 return
         # Confirm + auto-fish drop validation
         if self.config.get("auto_fish_handling", False):
             if any(a == "drop" for a in self.config.get("fish_actions", {}).values()):
                 if not self.config.get("confirm_button_pos"):
-                    QMessageBox.warning(self, "Onay konumunu ayarlayın",
+                    self._start_notice(self, "Onay konumunu ayarlayın",
                                         "Envanter sekmesinde onay konumunu seçin.")
                     return
 
@@ -4082,7 +4110,7 @@ class FishbotWindow(QMainWindow):
 
         all_windows = {n: w for n, w in WindowManager.get_all_windows()}
         if any(name not in all_windows for _, name in selected):
-            QMessageBox.warning(self, "Pencere yok", "Pencere listesini yenileyip tekrar seç.")
+            self._start_notice(self, "Pencere yok", "Pencere listesini yenileyip tekrar seç.")
             return
         self.save_config()
 
@@ -4130,8 +4158,12 @@ class FishbotWindow(QMainWindow):
         self.inventory.setDisabled(True)
         self._set_jigsaw_launcher_enabled(False)
         self.header.setStatus("Çalışıyor", "running")
+        if self.bots and hasattr(self, "session_control"):
+            self.session_control.session_started()
 
-    def stop_all_bots(self) -> None:
+    def stop_all_bots(self, cancel_actions=True) -> None:
+        if cancel_actions and hasattr(self, "session_control"):
+            self.session_control.cancel_all()
         if self._jigsaw_dialog is not None and self._jigsaw_dialog.is_running():
             self._jigsaw_dialog._stop()
         for bot in list(self.bots.values()):
@@ -4242,6 +4274,8 @@ class FishbotWindow(QMainWindow):
         elif reason is not None:
             self._session_non_bait_stop_reasons[bot_id] = reason
 
+        if hasattr(self, "session_control"):
+            self.session_control.record_stop(bot_id, bot)
         self.bots.pop(bot_id, None)
         self.bot_threads.pop(bot_id, None)
         self._destroy_fish_debug_windows(bot_id)
@@ -4352,7 +4386,13 @@ class FishbotWindow(QMainWindow):
 
     # ---------------- Lifecycle ----------------
     def closeEvent(self, ev) -> None:
-        if self.telegram_tab.busy():
+        if hasattr(self, "session_control"):
+            self.session_control.cancel_all()
+            self.session_control.timer.stop()
+        self.telegram_tab.stop_remote()
+        for bot in list(self.bots.values()):
+            bot.stop()
+        if (hasattr(self, "session_control") and self.session_control.worker is not None) or self.telegram_tab.busy():
             ev.ignore()
             QTimer.singleShot(150, self.close)
             return

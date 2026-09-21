@@ -1,5 +1,16 @@
 # Değişiklik günlüğü
 
+## DEV 0.4
+
+- Yalnızca seçili özel sohbet sahibinden yeni Telegram komutları kabul edilir; açılışta eski güncellemeler atlanır.
+- `/start`, `/stop`, `/karakterat`, `/kanal`, `/durum` ve `/istatistik` oturum denetimine bağlandı.
+- `/stop` / F8: balık botu, geçiş ve zamanlayıcı iptal edilir; başarı bildirimi işçiler durduktan sonra gelir.
+- Ayarlar sekmesine dakika girişli karakter/kanal sayacı ve kanal sonrası devam/tekrar seçenekleri eklendi.
+- Görsel geçişler ayrı iş parçacığında yürür; son ekran doğrulanmadan başarı bildirilmez.
+- Süre, tahmini kullanılan/kalan yem, tur ve isteğe bağlı görselle doğrulanan balık sayımı eklendi.
+- `/pm` komutu yanıt verir fakat ekran şablonları gelmeden oyuna metin yazmaz.
+- Yapboz önbellek yöneticisine erişimdeki property/çağrı hatası düzeltildi.
+
 ## DEV 0.3
 
 - Ana ekran sadeleştirildi; arayüz, ayarlar, envanter ve rehber metinleri Türkçeleştirildi.
