@@ -21,9 +21,6 @@ Sade Türkçe ana arayüz; Telegram bot oluşturma rehberi, bağlantı kontrolü
 
 ![Telegram ayarları](docs/previews/telegram.png)
 
-## Üst projenin özgün README'si
-
-Arşiv amaçlı aşağıda korunmuştur. İndirme/sürüm bilgileri üst projeye aittir; tespit edilemezlik iddiası doğrulanmamıştır.
 
 # MT2 Fishing Bot — v1.2.0
 **THIS PROJECT WAS BUILT FOR EDUCATIONAL AND LEARNING PURPOSES ONLY!**
@@ -32,13 +29,6 @@ Free fishing minigame bot for Metin2. No subscriptions, no licenses.
 
 Original **Author:** boristei | **Discord:** boristei
 
----
-
-## Preview
-
-![GUI Demo](docs/gui_demo.png)
-
----
 
 ## Tutorial/Demo
 
